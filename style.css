@@ -344,6 +344,11 @@ h2{
     
 }
 
+.results-section {
+    padding-top: 20px;
+    padding-bottom: 80px;
+}
+
 
 .results-header {
     text-align: center;
@@ -369,9 +374,10 @@ h2{
     border: 1px solid #eee;
     border-radius: 10px;
     overflow: hidden;
-    max-width: 900px;
+    max-width: 1500px;
     margin: 0 auto;
-    box-shadow: 0 5px 40px #07300fa2
+    box-shadow: 0 5px 50px #07300fa2;
+   
 }
 
 .case-study-image {
@@ -395,6 +401,9 @@ h2{
 
 .tags {
     margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
 }
 
 .tag {
@@ -404,7 +413,8 @@ h2{
     border-radius: 20px;
     font-size: 12px;
     font-weight: 500;
-    margin-right: 5px;
+   width: fit-content;
+   flex-shrink: 0;
 }
 
 .case-study-content h4 {
@@ -468,17 +478,14 @@ h2{
     }
 }
 
-.results-section {
-    padding-top: 20px;
-    padding-bottom: 80px;
-}
 
 .case-study-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    max-width: 900px;
+    grid-template-columns: 1fr;
+    gap: 50px;
+    max-width: 1500px;
     margin: 0 auto;
+    margin-top: -50px;
 }
 
 
@@ -501,7 +508,7 @@ h2{
     font-size: 14px;
     color: #888;
     line-height: 1.6;
-    min-height: 60px; /* Asigură înălțime consistentă */
+    min-height:10px; /* Asigură înălțime consistentă */
     margin-bottom: 20px;
 }
 
@@ -538,19 +545,23 @@ h2{
 
 .pricing-section {
     padding: 60px 0;
-    background-color: #fff;
-    border-top: 1px solid #eee;
+    background-color: #efefef;
+  
+    border-top: 4px solid #0000002c;
 }
 
 .pricing-section h2 {
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 15px;
+    margin-top: -2px;
 }
 
 .pricing-section p {
+  
     font-size: 16px;
     color: #666;
+    font-weight: 600;
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
@@ -568,23 +579,24 @@ h2{
 }
 
 .pricing-details h4 {
-    font-size: 24px;
+    font-size: 27px;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .pricing-details p {
     font-size: 16px;
-    color: #666;
+    color: #fbfbfbc0;
     max-width: 800px;
-    margin: 0 auto 40px;
+    margin: 0 auto 25px;
     line-height: 1.6;
 }
 
 .pricing-features {
     display: flex;
     justify-content: center;
-    gap: 80px;
+    gap:100px;
+   
 }
 
 .feature-item {
@@ -597,6 +609,7 @@ h2{
     font-size: 30px;
     font-weight: 700;
     margin: 0;
+   
 }
 
 .feature-label {
@@ -607,7 +620,11 @@ h2{
 
 .reviews-section {
     padding: 60px 0;
-    background-color: #f7f7f7;
+    /* background-color: #f7f7f7; */
+    background-image: url(images/background6.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
     border-top: 1px solid #eee;
 }
 
@@ -617,11 +634,18 @@ h2{
 }
 
 .reviews-header h3 {
-    font-size: 30px;
+    font-size: 35px;
     font-weight: 700;
     margin-bottom: 10px;
+    color: #000;
 }
 
+.reviews-header p{
+    font-size: 18px;
+    color: #000000;
+    font-weight: 520;
+    
+}
 .stars span {
     color: gold;
     font-size: 24px;
@@ -638,6 +662,7 @@ h2{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    
 }
 
 .review-card {
@@ -679,7 +704,7 @@ h2{
 @media (max-width: 992px) {
     .pricing-features {
         flex-direction: column;
-        gap: 20px;
+        gap: 50px;
     }
     .reviews-grid {
         grid-template-columns: 1fr;
@@ -732,8 +757,8 @@ h2{
 
 .cta-bottom {
     padding: 60px 0;
-    background-color: #f7f7f7;
-    border-top: 1px solid #eee;
+    background-color: #000000;
+    border-top: 1px solid #03fff2;
 }
 
 .cta-bottom h4 {
@@ -744,7 +769,7 @@ h2{
 
 .cta-bottom p {
     font-size: 16px;
-    color: #666;
+    color: #cfcfcf;
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
@@ -762,14 +787,15 @@ h2{
 }
 
 .cta-form-section h4 {
-    font-size: 24px;
+    font-size: 27px;
     font-weight: 600;
     margin-bottom: 10px;
+    color: #000;
 }
 
 .cta-form-section p {
     font-size: 16px;
-    color: #666;
+    color: #313131;
     max-width: 600px;
     margin: 0 auto 40px;
 }
@@ -794,8 +820,12 @@ h2{
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 15px;
+    color: #4a4949;
 }
 
+.color-green{
+    color:rgb(2, 159, 2)
+}
 .contact-info p {
     font-size: 14px;
     color: #888;
@@ -982,6 +1012,10 @@ footer {
         flex-direction: column-reverse;
         text-align: center;
         gap: 15px;
+    }
+
+    .reviews-section{
+        background-size: auto;
     }
 }
 
