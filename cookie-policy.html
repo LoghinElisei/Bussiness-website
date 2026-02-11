@@ -1,19 +1,931 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cookie Policy</title>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: auto; }
-    h1 { color: #333; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cookie Policy - Project S</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Crimson+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #22C55E;
+  --primary-dark: #16A34A;
+  --primary-light: #4ADE80;
+  --accent: #15803D;
+  --secondary: #0F172A;
+  --dark: #020617;
+  --dark-alt: #0F172A;
+  --card-bg: #1E293B;
+  --text: #F1F5F9;
+  --text-muted: #94A3B8;
+  --border: #334155;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--dark);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+  font-family: 'Crimson Pro', serif;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(22, 163, 74, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: "COOKIES";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-5deg);
+  text-align: center;
+  font-size: clamp(80px, 15vw, 180px);
+  font-weight: 900;
+  line-height: 0.85;
+  color: rgba(255, 255, 255, 0.02);
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: 0.15em;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+nav {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav.scrolled {
+  padding: 12px 60px;
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  font-family: 'Space Grotesk', sans-serif;
+  text-decoration: none;
+}
+
+.logo-main {
+  font-size: 26px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo::before {
+  content: '◆';
+  font-size: 20px;
+  color: var(--primary);
+}
+
+nav ul {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  align-items: center;
+}
+
+nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Space Grotesk', sans-serif;
+  position: relative;
+  transition: color 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white !important;
+  padding: 10px 26px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
+}
+
+.nav-cta::after {
+  display: none;
+}
+
+header {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 140px 40px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-badge {
+  display: inline-block;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: var(--primary);
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header h1 {
+  font-size: clamp(40px, 8vw, 64px);
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text);
+  line-height: 1.1;
+  letter-spacing: -2px;
+  font-family: 'Space Grotesk', sans-serif;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s backwards;
+}
+
+header p {
+  max-width: 700px;
+  color: var(--text-muted);
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.7;
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
+}
+
+.cookie-icon {
+  font-size: 72px;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.05s backwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 40px 100px;
+  position: relative;
+  z-index: 1;
+}
+
+.policy-section {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(51, 65, 85, 0.3);
+  padding: 40px;
+  border-radius: 24px;
+  margin-bottom: 30px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.policy-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  transform: scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.policy-section:hover::before {
+  transform: scaleX(1);
+}
+
+.policy-section:hover {
+  transform: translateY(-5px);
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 20px 60px rgba(34, 197, 94, 0.15);
+}
+
+.policy-section h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.policy-section h2::before {
+  content: '▸';
+  color: var(--primary);
+  font-size: 24px;
+}
+
+.policy-section p {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.policy-section p:last-child {
+  margin-bottom: 0;
+}
+
+.policy-section ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 20px 0;
+}
+
+.policy-section li {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  padding-left: 30px;
+  position: relative;
+}
+
+.policy-section li::before {
+  content: '🍪';
+  position: absolute;
+  left: 0;
+  font-size: 18px;
+}
+
+.policy-section strong {
+  color: var(--primary-light);
+  font-weight: 600;
+}
+
+.cookie-types {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin: 30px 0;
+}
+
+.cookie-type-card {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.7));
+  border: 1px solid rgba(51, 65, 85, 0.3);
+  padding: 30px 24px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.cookie-type-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.15);
+}
+
+.cookie-type-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  color: var(--primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cookie-type-card .icon {
+  font-size: 24px;
+}
+
+.cookie-type-card p {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.last-updated {
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.last-updated-badge {
+  display: inline-block;
+  background: rgba(34, 197, 94, 0.05);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  color: var(--text-muted);
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.cta-section {
+  text-align: center;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(51, 65, 85, 0.3);
+  border-radius: 24px;
+  margin: 60px auto;
+  max-width: 700px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cta-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-section h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  color: var(--text);
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+
+.cta-section p {
+  color: var(--text-muted);
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  padding: 16px 40px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  font-family: 'Space Grotesk', sans-serif;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+}
+
+.btn.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.4);
+}
+
+footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(51, 65, 85, 0.3);
+  color: var(--text-muted);
+  padding: 60px 40px 40px;
+  font-size: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-brand {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-logo {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.footer-brand p {
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-contact a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+  color: var(--primary);
+}
+
+.footer-links {
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.footer-column h4 {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  margin-bottom: 16px;
+}
+
+.footer-column ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-column a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 14px;
+}
+
+.footer-column a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(51, 65, 85, 0.3);
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  display: none;
+  z-index: 999;
+  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+  transition: all 0.3s ease;
+}
+
+#backToTop:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.5);
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in.appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 16px 20px;
+  }
+  
+  nav ul {
+    display: none;
+  }
+  
+  header {
+    padding: 120px 20px 40px;
+  }
+  
+  .content-container {
+    padding: 40px 20px 80px;
+  }
+  
+  .policy-section {
+    padding: 30px 24px;
+  }
+  
+  .policy-section h2 {
+    font-size: 24px;
+  }
+  
+  .cookie-types {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-section {
+    padding: 40px 24px;
+  }
+  
+  footer {
+    padding: 40px 20px 30px;
+  }
+  
+  .footer-main {
+    flex-direction: column;
+  }
+  
+  .footer-links {
+    gap: 30px;
+  }
+}
+</style>
 </head>
 <body>
-  <h1>Cookie Policy</h1>
-  <p>Last updated: 30.09.2025</p>
 
-  <p>This website does not use any cookies other than those strictly necessary for its proper functioning. No tracking, analytics, or advertising cookies are used.</p>
+<nav id="navbar">
+  <a href="index.html" class="logo">
+    <div class="logo-main">Project S</div>
+  </a>
+  <ul>
+    <li><a href="index.html#hero">Home</a></li>
+    <li><a href="index.html#reviews-section">About</a></li>
+    <li><a href="index.html#services-section">Services</a></li>
+    <li><a href="index.html#contact-section">Contact</a></li>
+    <li><a href="index.html#contact-section" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<header>
+  <div class="cookie-icon">🍪</div>
+  <span class="section-badge">Understanding Our Cookies</span>
+  <h1>Cookie Policy</h1>
+  <p>Learn how we use cookies to enhance your experience and improve our services. We believe in transparency and giving you control over your data.</p>
+</header>
+
+<div class="content-container">
+  <div class="last-updated">
+    <div class="last-updated-badge">Last Updated: January 28, 2026</div>
+  </div>
+
+  <div class="policy-section fade-in">
+    <h2>What Are Cookies?</h2>
+    <p>Cookies are small text files that are placed on your device (computer, smartphone, or tablet) when you visit our website. They help us provide you with a better browsing experience by remembering your preferences, understanding how you use our site, and improving our services.</p>
+    <p>Cookies contain information that is transferred to your device's hard drive. They are widely used to make websites work more efficiently and provide valuable insights to website owners.</p>
+    <p>Most web browsers automatically accept cookies, but you can usually modify your browser settings to decline cookies if you prefer. However, this may prevent you from taking full advantage of our website's features.</p>
+  </div>
+
+  <div class="policy-section fade-in">
+    <h2>Types of Cookies We Use</h2>
+    <p>We use different types of cookies to enhance your experience and improve our services. Here's a breakdown of the cookies we use:</p>
+    
+    <div class="cookie-types">
+      <div class="cookie-type-card">
+        <h3><span class="icon">🔒</span> Essential Cookies</h3>
+        <p>These cookies are necessary for the website to function properly. They enable basic features like page navigation, secure areas, and form submissions. Without these cookies, our website cannot function correctly.</p>
+      </div>
+      
+      <div class="cookie-type-card">
+        <h3><span class="icon">📊</span> Analytics Cookies</h3>
+        <p>These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. This helps us improve our content and user experience based on real usage patterns.</p>
+      </div>
+      
+      <div class="cookie-type-card">
+        <h3><span class="icon">🎯</span> Marketing Cookies</h3>
+        <p>These cookies track your online activity to help us deliver more relevant advertising and measure the effectiveness of our marketing campaigns. They remember your preferences and provide personalized content.</p>
+      </div>
+      
+      <div class="cookie-type-card">
+        <h3><span class="icon">⚙️</span> Functional Cookies</h3>
+        <p>These cookies enable enhanced functionality and personalization, such as remembering your language preferences, region, or login details. They improve your user experience by saving your settings.</p>
+      </div>
+      
+      <div class="cookie-type-card">
+        <h3><span class="icon">👥</span> Third-Party Cookies</h3>
+        <p>Some cookies are placed by third-party services that appear on our pages (like social media plugins or analytics tools). These help us integrate external services and understand broader user behavior.</p>
+      </div>
+      
+      <div class="cookie-type-card">
+        <h3><span class="icon">🕐</span> Session Cookies</h3>
+        <p>Temporary cookies that are deleted when you close your browser. They help you navigate between pages efficiently and remember information you've entered during your browsing session.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="policy-section fade-in">
+    <h2>How We Use Cookies</h2>
+    <p>We use cookies for various purposes to improve your experience on our website:</p>
+    <ul>
+      <li><strong>Remembering Your Preferences:</strong> Cookies help us remember your settings, such as language preference, font size, and other customization options, so you don't have to set them every time you visit.</li>
+      <li><strong>Analyzing Website Traffic:</strong> We use analytics cookies to understand which pages are most popular, how long visitors stay on our site, and where they come from. This helps us optimize our content and improve user experience.</li>
+      <li><strong>Improving Security:</strong> Essential cookies help protect your account and detect suspicious activity, ensuring a secure browsing experience.</li>
+      <li><strong>Personalizing Content:</strong> Marketing cookies allow us to show you content and offers that are relevant to your interests and needs as an accounting firm looking to grow.</li>
+      <li><strong>Measuring Campaign Effectiveness:</strong> Cookies help us understand which marketing campaigns bring visitors to our site and which services generate the most interest.</li>
+      <li><strong>Enabling Social Media Integration:</strong> Social media cookies allow you to share our content and connect with us on various platforms.</li>
+    </ul>
+  </div>
+
+  <div class="policy-section fade-in">
+    <h2>Managing Your Cookie Preferences</h2>
+    <p>You have control over how cookies are used on your device. Here are several ways you can manage your cookie preferences:</p>
+    <ul>
+      <li><strong>Browser Settings:</strong> Most web browsers allow you to control cookies through their settings. You can set your browser to refuse all cookies, accept only certain cookies, or delete cookies after each browsing session. Check your browser's help section for specific instructions.</li>
+      <li><strong>Opt-Out Tools:</strong> You can use industry opt-out tools to prevent certain types of tracking cookies. Visit websites like the Digital Advertising Alliance or Network Advertising Initiative to manage your preferences.</li>
+      <li><strong>Cookie Consent Banner:</strong> When you first visit our site, you'll see a cookie consent banner that allows you to accept or customize your cookie preferences.</li>
+      <li><strong>Third-Party Controls:</strong> Some third-party services we use (like Google Analytics) offer their own opt-out mechanisms. You can install browser extensions or visit their websites to adjust settings.</li>
+    </ul>
+    <p><strong>Important Note:</strong> Disabling certain cookies may affect the functionality of our website. Some features may not work properly if essential cookies are blocked. We recommend keeping essential cookies enabled for the best experience.</p>
+  </div>
+
+  <div class="policy-section fade-in">
+    <h2>Common Browsers and Cookie Management</h2>
+    <p>Here's how to manage cookies in popular web browsers:</p>
+    <ul>
+      <li><strong>Google Chrome:</strong> Settings → Privacy and security → Cookies and other site data</li>
+      <li><strong>Mozilla Firefox:</strong> Options → Privacy & Security → Cookies and Site Data</li>
+      <li><strong>Safari:</strong> Preferences → Privacy → Cookies and website data</li>
+      <li><strong>Microsoft Edge:</strong> Settings → Privacy, search, and services → Cookies and site permissions</li>
+      <li><strong>Opera:</strong> Settings → Privacy & security → Cookies and other site data</li>
+    </ul>
+    <p>For mobile devices, check your browser's help documentation or device settings for cookie management options.</p>
+  </div>
+
+  <div class="policy-section fade-in">
+    <h2>Third-Party Cookies</h2>
+    <p>Our website uses cookies from trusted third-party services to enhance functionality and provide better insights:</p>
+    <ul>
+      <li><strong>Google Analytics:</strong> Helps us understand how visitors use our site and identify areas for improvement</li>
+      <li><strong>Social Media Platforms:</strong> Enables sharing features and social media integration (Facebook, LinkedIn, Twitter)</li>
+      <li><strong>Advertising Networks:</strong> Delivers relevant advertisements based on your interests</li>
+      <li><strong>Customer Relationship Management (CRM) Tools:</strong> Helps us manage client communications and track engagement</li>
+    </ul>
+    <p>These third parties have their own privacy policies and cookie policies. We encourage you to review them to understand how they use cookies and protect your data.</p>
+  </div>
+
+  <div class="policy-section fade-in">
+    <h2>Cookie Retention Period</h2>
+    <p>Different cookies have different lifespans:</p>
+    <ul>
+      <li><strong>Session Cookies:</strong> Deleted automatically when you close your browser</li>
+      <li><strong>Persistent Cookies:</strong> Remain on your device for a set period (from a few days to several years) or until you manually delete them</li>
+      <li><strong>Analytics Cookies:</strong> Typically stored for up to 2 years to track long-term trends</li>
+      <li><strong>Marketing Cookies:</strong> Usually stored for 30-90 days to track campaign effectiveness</li>
+    </ul>
+    <p>You can delete cookies at any time through your browser settings.</p>
+  </div>
+
+  <div class="policy-section fade-in">
+    <h2>Changes to This Cookie Policy</h2>
+    <p>We may update this Cookie Policy from time to time to reflect changes in technology, legal requirements, or our business practices. When we make significant changes, we will:</p>
+    <ul>
+      <li>Update the "Last Updated" date at the top of this page</li>
+      <li>Notify you through a prominent notice on our website</li>
+      <li>Send you an email if you've subscribed to our communications</li>
+    </ul>
+    <p>We encourage you to review this Cookie Policy periodically to stay informed about how we use cookies and protect your privacy.</p>
+  </div>
+
+  <div class="policy-section fade-in">
+    <h2>Contact Us About Cookies</h2>
+    <p>If you have any questions or concerns about our use of cookies, please don't hesitate to reach out:</p>
+    <p>
+      <strong>Email:</strong> <a href="mailto:Kbprojectsglobal@gmail.com" style="color: var(--primary); text-decoration: none;">Kbprojectsglobal@gmail.com</a><br>
+      <strong>Phone:</strong> <a href="tel:+447435197955" style="color: var(--primary); text-decoration: none;">+44 7435 197 955</a><br>
+      <strong>Address:</strong> Project S, Oxford, England, UK
+    </p>
+    <p>We're committed to transparency and will be happy to answer any questions you have about our cookie practices.</p>
+  </div>
+
+  <div class="cta-section fade-in">
+    <h3>Ready to Grow Your Firm?</h3>
+    <p>Let's discuss how our data-driven marketing strategies can help your accounting firm thrive.</p>
+    <a href="index.html" class="btn primary">Back to Home</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <div class="footer-logo">Project S</div>
+        <p>Driving exponential growth for accounting and professional service firms through data-driven marketing strategies.</p>
+        <div class="footer-contact">
+          <a href="mailto:Kbprojectsglobal@gmail.com">Kbprojectsglobal@gmail.com</a>
+          <a href="tel:+447435197955">+44 7435 197 955</a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="index.html#reviews-section">About Us</a></li>
+            <li><a href="index.html#services-section">Services</a></li>
+            <li><a href="index.html#offer-section">Solutions</a></li>
+            <li><a href="index.html#contact-section">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>
+            <li><a href="CookiePolicy.html">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Project S. All Rights Reserved. Designed with passion for growth.</p>
+    </div>
+  </div>
+</footer>
+
+<button id="backToTop">↑ Top</button>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+const observerOptions = {
+  threshold: 0.15,
+  rootMargin: "0px 0px -50px 0px"
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('appear');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 500) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+</script>
 
 </body>
 </html>

@@ -1,594 +1,4718 @@
 <!DOCTYPE html>
-<html lang="ro">
+
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KB Projects</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Project S - Growth for Accountancy Firms</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Crimson+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+}
+
+
+:root {
+
+  --primary: #0B6623;
+
+  --primary-dark: #08491A;
+
+  --primary-light: #0E7A2A;
+
+  --accent: #C0C0C0;
+
+  --accent-dark: #A8A8A8;
+
+  --accent-light: #E8E8E8;
+
+  --secondary: #0F172A;
+
+  --dark: #0A0F1A;
+
+  --dark-alt: #0F172A;
+
+  --card-bg: #0F1A14;
+
+  --text: #F1F5F9;
+
+  --text-muted: #94A3B8;
+
+  --border: #2A3F32;
+
+}
+
+
+.top-offer-banner {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  background: linear-gradient(135deg, #0B6623, #08491A);
+
+  color: #E8E8E8;
+
+  text-align: center;
+
+  padding: 12px 20px;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  font-weight: 600;
+
+  font-size: 15px;
+
+  letter-spacing: 0.8px;
+
+  z-index: 1100;
+
+  box-shadow: 0 4px 15px rgba(11, 102, 35, 0.4);
+
+  border-bottom: 2px solid #0E7A2A;
+
+  text-transform: uppercase;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  animation: subtlePulse 8s infinite ease-in-out;
+
+}
+
+/* ... rest of banner styles + @keyframes ... */
+
+
+
+
+
+
+html {
+
+  scroll-behavior: smooth;
+
+}
+
+
+body {
+
+  background: var(--dark);
+
+  color: var(--text);
+
+  overflow-x: hidden;
+
+  line-height: 1.6;
+
+  font-family: 'Crimson Pro', serif;
+
+  cursor: none;
+
+}
+
+
+body {
+
+  padding-top: 48px;  /* ← added this line */
+
+  /* ... rest unchanged ... */
+
+}
+
+
+/* NEW FEATURE 1: Custom Cursor */
+
+.custom-cursor {
+
+  position: fixed;
+
+  width: 20px;
+
+  height: 20px;
+
+  border: 2px solid var(--accent-light);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: 10000;
+
+  transition: all 0.1s ease;
+
+  transform: translate(-50%, -50%);
+
+}
+
+
+.custom-cursor-dot {
+
+  position: fixed;
+
+  width: 6px;
+
+  height: 6px;
+
+  background: var(--primary);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: 10001;
+
+  transition: all 0.05s ease;
+
+  transform: translate(-50%, -50%);
+
+  box-shadow: 0 0 10px var(--primary);
+
+}
+
+
+.custom-cursor.cursor-hover {
+
+  width: 50px;
+
+  height: 50px;
+
+  background: rgba(11, 102, 35, 0.2);
+
+}
+
+
+/* NEW FEATURE 2: Scroll Progress Bar */
+
+.scroll-progress {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  width: 0%;
+
+  height: 4px;
+
+  background: linear-gradient(90deg, var(--primary), var(--accent-light));
+
+  z-index: 10000;
+
+  transition: width 0.1s ease;
+
+  box-shadow: 0 0 10px rgba(11, 102, 35, 0.5);
+
+}
+
+
+body::before {
+
+  content: '';
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  background: 
+
+    radial-gradient(circle at 20% 20%, rgba(11, 102, 35, 0.15) 0%, transparent 50%),
+
+    radial-gradient(circle at 80% 80%, rgba(192, 192, 192, 0.15) 0%, transparent 50%);
+
+  pointer-events: none;
+
+  z-index: 0;
+
+}
+
+
+body::after {
+
+  content: "PROJECT\A S";
+
+  white-space: pre;
+
+  position: fixed;
+
+  top: 50%;
+
+  left: 50%;
+
+  transform: translate(-50%, -50%) rotate(0deg);
+
+  text-align: center;
+
+  font-size: clamp(80px, 15vw, 180px);
+
+  font-weight: 900;
+
+  line-height: 0.85;
+
+  color: rgba(255, 255, 255, 0.02);
+
+  pointer-events: none;
+
+  z-index: 0;
+
+  letter-spacing: 0.15em;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+}
+
+
+nav {
+
+  background: rgba(15, 23, 42, 0.9);
+
+  backdrop-filter: blur(20px) saturate(180%);
+
+  border-bottom: 2px solid var(--accent);
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 18px 60px;
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  z-index: 1000;
+
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+
+nav {
+
+  top: 48px;           /* ← changed/added this line */
+
+  background: rgba(11, 102, 35, 0.15);  /* ← updated from blue-ish */
+
+  border-bottom: 2px solid #0E7A2A;     /* ← more green */
+
+  /* ... */
+
+}
+
+
+nav.scrolled {
+
+  padding: 12px 60px;
+
+  background: rgba(11, 102, 35, 0.1);
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+  border-bottom: 2px solid var(--accent-light);
+
+}
+
+
+.logo {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  line-height: 1;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  font-size: 28px;
+
+  font-weight: 700;
+
+  background: linear-gradient(135deg, var(--accent-light), var(--accent), var(--primary));
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  cursor: pointer;
+
+  text-decoration: none;
+
+  transition: transform 0.3s ease;
+
+  text-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
+
+}
+
+
+.logo:hover {
+
+  transform: scale(1.05);
+
+}
+
+
+.nav-right {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 40px;
+
+}
+
+
+nav ul {
+
+  display: flex;
+
+  gap: 40px;
+
+  list-style: none;
+
+  align-items: center;
+
+}
+
+
+nav a {
+
+  color: var(--accent);
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  position: relative;
+
+  transition: color 0.3s ease;
+
+  letter-spacing: 0.3px;
+
+  text-shadow: 0 0 10px rgba(192, 192, 192, 0.2);
+
+}
+
+
+nav a:hover {
+
+  color: var(--accent-light);
+
+}
+
+
+nav a::after {
+
+  content: '';
+
+  position: absolute;
+
+  bottom: -5px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 0;
+
+  height: 2px;
+
+  background: linear-gradient(90deg, var(--primary), var(--accent-light));
+
+  transition: width 0.3s ease;
+
+}
+
+
+nav a:hover::after {
+
+  width: 100%;
+
+}
+
+
+.nav-cta {
+
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+
+  color: white !important;
+
+  padding: 12px 28px;
+
+  border-radius: 30px;
+
+  font-weight: 600;
+
+  transition: all 0.3s ease;
+
+  box-shadow: 0 4px 15px rgba(11, 102, 35, 0.4);
+
+  border: 1px solid var(--accent-light);
+
+}
+
+
+.nav-cta:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 25px rgba(11, 102, 35, 0.6), 0 0 20px rgba(232, 232, 232, 0.3);
+
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+
+}
+
+
+.nav-cta::after {
+
+  display: none;
+
+}
+
+
+.hero {
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+
+  padding: 140px 40px 80px;
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+.hero::before {
+
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  background: linear-gradient(135deg, rgba(2, 6, 23, 0.95), rgba(11, 102, 35, 0.2));
+
+  z-index: 1;
+
+}
+
+
+.hero::before {
+
+  background: linear-gradient(135deg, rgba(10, 15, 26, 0.92), rgba(11, 102, 35, 0.25));
+
+  /* ← blue removed, green kept */
+
+}
+
+
+.hero::after {
+
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  background: radial-gradient(circle at 30% 50%, rgba(232, 232, 232, 0.15) 0%, transparent 50%);
+
+  z-index: 2;
+
+}
+
+
+.orb {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(120px);
+
+  opacity: 0.4;
+
+  animation: float 20s infinite ease-in-out;
+
+  z-index: 3;
+
+}
+
+
+.orb1 {
+
+  width: 500px;
+
+  height: 500px;
+
+  background: radial-gradient(circle, var(--primary), transparent);
+
+  top: -10%;
+
+  left: -10%;
+
+  animation-delay: 0s;
+
+}
+
+
+.orb2 {
+
+  width: 400px;
+
+  height: 400px;
+
+  background: radial-gradient(circle, var(--accent-light), transparent);
+
+  bottom: -10%;
+
+  right: -10%;
+
+  animation-delay: 5s;
+
+}
+
+
+.orb3 {
+
+  width: 350px;
+
+  height: 350px;
+
+  background: radial-gradient(circle, var(--primary-dark), transparent);
+
+  top: 40%;
+
+  right: 20%;
+
+  animation-delay: 10s;
+
+}
+
+
+@keyframes float {
+
+  0%, 100% { transform: translate(0, 0) scale(1); }
+
+  33% { transform: translate(50px, -50px) scale(1.1); }
+
+  66% { transform: translate(-30px, 30px) scale(0.9); }
+
+}
+
+
+.hero-content {
+
+  position: relative;
+
+  z-index: 10;
+
+  max-width: 1000px;
+
+  animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+
+@keyframes fadeInUp {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(40px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
+}
+
+
+.section-badge {
+
+  display: inline-block;
+
+  background: linear-gradient(135deg, rgba(192, 192, 192, 0.2), rgba(11, 102, 35, 0.1));
+
+  border: 2px solid var(--accent);
+
+  color: var(--accent-light);
+
+  padding: 8px 24px;
+
+  border-radius: 30px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1.5px;
+
+  margin-bottom: 24px;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+}
+
+
+.hero h1 {
+
+  font-size: clamp(40px, 8vw, 72px);
+
+  font-weight: 700;
+
+  margin-bottom: 24px;
+
+  color: var(--accent-light);
+
+  line-height: 1.1;
+
+  letter-spacing: -2px;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  text-shadow: 0 0 20px rgba(232, 232, 232, 0.3);
+
+}
+
+
+.hero h1 .highlight {
+
+  background: linear-gradient(135deg, var(--accent-light), var(--accent), var(--primary));
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+
+  position: relative;
+
+  display: inline-block;
+
+  text-shadow: 0 0 30px rgba(11, 102, 35, 0.4);
+
+}
+
+
+.hero h1 .highlight::after {
+
+  content: '|';
+
+  color: var(--accent-light);
+
+  animation: blink 0.8s infinite;
+
+  text-shadow: 0 0 10px var(--accent-light);
+
+}
+
+
+@keyframes blink {
+
+  0%, 100% { opacity: 1; }
+
+  50% { opacity: 0; }
+
+}
+
+
+.hero p {
+
+  max-width: 700px;
+
+  color: var(--accent);
+
+  margin: 0 auto 40px;
+
+  font-size: 19px;
+
+  line-height: 1.7;
+
+  font-weight: 400;
+
+  text-shadow: 0 0 10px rgba(192, 192, 192, 0.1);
+
+}
+
+
+.buttons {
+
+  display: flex;
+
+  gap: 20px;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s backwards;
+
+}
+
+
+.btn {
+
+  padding: 16px 40px;
+
+  border-radius: 50px;
+
+  border: none;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  font-size: 16px;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  letter-spacing: 0.3px;
+
+  text-decoration: none;
+
+  display: inline-block;
+
+}
+
+
+.btn::before {
+
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+
+  left: -100%;
+
+  width: 100%;
+
+  height: 100%;
+
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+
+  transition: left 0.6s;
+
+}
+
+
+.btn:hover::before {
+
+  left: 100%;
+
+}
+
+
+.btn.primary {
+
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+
+  color: var(--accent-light);
+
+  box-shadow: 0 10px 30px rgba(11, 102, 35, 0.4), 0 0 20px rgba(11, 102, 35, 0.2);
+
+  border: 2px solid var(--accent-light);
+
+}
+
+
+.btn.primary:hover {
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 15px 40px rgba(11, 102, 35, 0.6), 0 0 30px rgba(232, 232, 232, 0.3);
+
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+
+}
+
+
+.btn.secondary {
+
+  border: 2px solid var(--accent);
+
+  background: linear-gradient(135deg, rgba(192, 192, 192, 0.1), rgba(232, 232, 232, 0.05));
+
+  color: var(--accent-light);
+
+  backdrop-filter: blur(10px);
+
+}
+
+
+.btn.secondary:hover {
+
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+
+  color: var(--dark);
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 10px 30px rgba(192, 192, 192, 0.4);
+
+}
+
+
+section {
+
+  padding: 120px 40px;
+
+  position: relative;
+
+  z-index: 1;
+
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+}
+
+
+section h2 {
+
+  font-size: clamp(36px, 6vw, 52px);
+
+  margin-bottom: 16px;
+
+  font-weight: 700;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  color: var(--accent-light);
+
+  letter-spacing: -1px;
+
+  text-align: center;
+
+  width: 100%;
+
+  text-shadow: 0 0 15px rgba(232, 232, 232, 0.2);
+
+}
+
+
+section > p {
+
+  color: var(--accent);
+
+  font-size: 18px;
+
+  max-width: 750px;
+
+  margin: 0 auto 60px;
+
+  line-height: 1.7;
+
+  text-align: center;
+
+  width: 100%;
+
+}
+
+
+section > .section-badge {
+
+  margin: 0 auto 24px;
+
+}
+
+
+.cards {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
+  gap: 30px;
+
+  max-width: 1300px;
+
+  width: 100%;
+
+  margin: 0 auto;
+
+}
+
+
+
+
+/* NEW FEATURE 3: 3D Tilt Effect on Cards */
+
+.card {
+
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(11, 102, 35, 0.1));
+
+  backdrop-filter: blur(20px);
+
+  border: 2px solid var(--accent);
+
+  padding: 40px 32px;
+
+  border-radius: 24px;
+
+  text-align: center;
+
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  position: relative;
+
+  overflow: hidden;
+
+  transform-style: preserve-3d;
+
+  perspective: 1000px;
+
+}
+
+
+.card::before {
+
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 4px;
+
+  background: linear-gradient(90deg, var(--accent-light), var(--accent), var(--primary));
+
+  transform: scaleX(0);
+
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+
+.card:hover::before {
+
+  transform: scaleX(1);
+
+}
+
+
+.card:hover {
+
+  border-color: var(--accent-light);
+
+  box-shadow: 0 20px 60px rgba(192, 192, 192, 0.25);
+
+}
+
+
+.card-icon {
+
+  font-size: 48px;
+
+  margin-bottom: 20px;
+
+  filter: grayscale(0);
+
+  transition: transform 0.4s ease;
+
+  text-shadow: 0 0 15px rgba(232, 232, 232, 0.3);
+
+}
+
+
+.card:hover .card-icon {
+
+  transform: scale(1.1) rotate(5deg);
+
+}
+
+
+.card h3 {
+
+  color: var(--accent-light);
+
+  font-size: 22px;
+
+  font-weight: 700;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  margin-bottom: 12px;
+
+  letter-spacing: -0.5px;
+
+}
+
+
+.card p {
+
+  color: var(--accent);
+
+  font-size: 15px;
+
+  line-height: 1.6;
+
+}
+
+
+/* NEW FEATURE 4: Interactive Service Cards with Flip Effect */
+
+.service-card-wrapper {
+
+  perspective: 1000px;
+
+  height: 350px;
+
+}
+
+
+.service-card {
+
+  width: 100%;
+
+  height: 100%;
+
+  position: relative;
+
+  transform-style: preserve-3d;
+
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+
+.service-card-wrapper:hover .service-card {
+
+  transform: rotateY(180deg);
+
+}
+
+
+.service-card-front,
+
+.service-card-back {
+
+  position: absolute;
+
+  width: 100%;
+
+  height: 100%;
+
+  backface-visibility: hidden;
+
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(11, 102, 35, 0.1));
+
+  backdrop-filter: blur(20px);
+
+  border: 2px solid var(--accent);
+
+  padding: 40px 32px;
+
+  border-radius: 24px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+
+}
+
+
+.service-card-back {
+
+  transform: rotateY(180deg);
+
+  background: linear-gradient(135deg, rgba(11, 102, 35, 0.3), rgba(30, 41, 59, 0.9));
+
+}
+
+
+.service-card-back ul {
+
+  list-style: none;
+
+  padding: 0;
+
+  margin-top: 20px;
+
+}
+
+
+.service-card-back li {
+
+  color: var(--accent);
+
+  margin: 10px 0;
+
+  font-size: 14px;
+
+}
+
+
+.service-card-back li::before {
+
+  content: '✓ ';
+
+  color: var(--primary);
+
+  font-weight: bold;
+
+  margin-right: 8px;
+
+}
+
+
+.offer-card {
+
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(11, 102, 35, 0.1));
+
+  backdrop-filter: blur(20px);
+
+  border: 2px solid var(--accent);
+
+  padding: 40px 32px;
+
+  border-radius: 24px;
+
+  text-align: center;
+
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  position: relative;
+
+}
+
+
+.offer-card::before {
+
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 24px;
+
+  padding: 2px;
+
+  background: linear-gradient(135deg, var(--accent-light), var(--primary));
+
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+
+  mask-composite: exclude;
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease;
+
+}
+
+
+.offer-card:hover::before {
+
+  opacity: 1;
+
+}
+
+
+.offer-card:hover {
+
+  transform: translateY(-8px);
+
+  box-shadow: 0 20px 60px rgba(192, 192, 192, 0.25);
+
+}
+
+
+.offer-card h3 {
+
+  color: var(--accent-light);
+
+  font-size: 22px;
+
+  font-weight: 700;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  margin-bottom: 12px;
+
+  letter-spacing: -0.5px;
+
+}
+
+
+.offer-card p {
+
+  color: var(--accent);
+
+  font-size: 15px;
+
+  line-height: 1.6;
+
+}
+
+
+.info-card {
+
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(11, 102, 35, 0.1));
+
+  backdrop-filter: blur(20px);
+
+  border: 2px solid var(--accent);
+
+  padding: 40px 32px;
+
+  border-radius: 24px;
+
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  position: relative;
+
+  text-align: center;
+
+}
+
+
+.info-card:hover {
+
+  transform: translateY(-8px);
+
+  border-color: var(--accent-light);
+
+  box-shadow: 0 20px 60px rgba(192, 192, 192, 0.25);
+
+}
+
+
+.info-icon {
+
+  font-size: 48px;
+
+  margin-bottom: 20px;
+
+  text-shadow: 0 0 15px rgba(232, 232, 232, 0.3);
+
+}
+
+
+.info-card h3 {
+
+  color: var(--accent-light);
+
+  font-size: 22px;
+
+  font-weight: 700;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  margin-bottom: 16px;
+
+  letter-spacing: -0.5px;
+
+}
+
+
+.info-card p {
+
+  color: var(--accent);
+
+  font-size: 15px;
+
+  line-height: 1.6;
+
+}
+
+
+.process-container {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 20px;
+
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  flex-wrap: wrap;
+
+}
+
+
+.process-step {
+
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(11, 102, 35, 0.1));
+
+  backdrop-filter: blur(20px);
+
+  border: 2px solid var(--accent);
+
+  padding: 30px 24px;
+
+  border-radius: 20px;
+
+  flex: 1;
+
+  min-width: 200px;
+
+  max-width: 280px;
+
+  text-align: center;
+
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+
+.process-step:hover {
+
+  transform: translateY(-5px);
+
+  border-color: var(--accent-light);
+
+  box-shadow: 0 15px 40px rgba(192, 192, 192, 0.25);
+
+}
+
+
+.step-number {
+
+  width: 50px;
+
+  height: 50px;
+
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 24px;
+
+  font-weight: 700;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  color: var(--dark);
+
+  margin: 0 auto 20px;
+
+  box-shadow: 0 5px 20px rgba(192, 192, 192, 0.4);
+
+  border: 2px solid var(--primary);
+
+}
+
+
+.process-step h3 {
+
+  color: var(--accent-light);
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  margin-bottom: 12px;
+
+  letter-spacing: -0.5px;
+
+}
+
+
+.process-step p {
+
+  color: var(--accent);
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+}
+
+
+.process-arrow {
+
+  font-size: 32px;
+
+  color: var(--accent-light);
+
+  font-weight: 700;
+
+  text-shadow: 0 0 10px rgba(232, 232, 232, 0.3);
+
+}
+
+
+/* NEW FEATURE 5: Animated Statistics Counter */
+
+.metrics-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+  gap: 30px;
+
+  max-width: 1200px;
+
+  margin: 0 auto 60px;
+
+}
+
+
+.metric-card {
+
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(11, 102, 35, 0.1));
+
+  backdrop-filter: blur(20px);
+
+  border: 2px solid var(--accent);
+
+  padding: 40px 30px;
+
+  border-radius: 24px;
+
+  text-align: center;
+
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+.metric-card::before {
+
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 4px;
+
+  background: linear-gradient(90deg, var(--accent-light), var(--accent));
+
+  transform: scaleX(0);
+
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+
+.metric-card:hover::before {
+
+  transform: scaleX(1);
+
+}
+
+
+.metric-card:hover {
+
+  transform: translateY(-8px);
+
+  border-color: var(--accent-light);
+
+  box-shadow: 0 20px 60px rgba(192, 192, 192, 0.3);
+
+}
+
+
+.metric-icon {
+
+  font-size: 48px;
+
+  margin-bottom: 20px;
+
+  text-shadow: 0 0 15px rgba(232, 232, 232, 0.3);
+
+}
+
+
+.metric-value {
+
+  font-size: 56px;
+
+  font-weight: 700;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+
+  line-height: 1;
+
+  margin-bottom: 12px;
+
+  letter-spacing: -2px;
+
+}
+
+
+.metric-label {
+
+  color: var(--accent-light);
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  margin-bottom: 8px;
+
+}
+
+
+.metric-sublabel {
+
+  color: var(--accent);
+
+  font-size: 13px;
+
+}
+
+
+.graph-container {
+
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(11, 102, 35, 0.15));
+
+  backdrop-filter: blur(20px);
+
+  border: 2px solid var(--accent);
+
+  padding: 40px 30px;
+
+  border-radius: 24px;
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+.graph-container::before {
+
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  background: radial-gradient(circle at 50% 0%, rgba(232, 232, 232, 0.1) 0%, transparent 60%);
+
+  pointer-events: none;
+
+  z-index: 0;
+
+}
+
+
+.graph-container > * {
+
+  position: relative;
+
+  z-index: 1;
+
+}
+
+
+.graph-container h3 {
+
+  color: var(--accent-light);
+
+  font-size: 24px;
+
+  font-weight: 700;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  text-align: center;
+
+  margin-bottom: 8px;
+
+  letter-spacing: -0.5px;
+
+}
+
+
+.performance-graph {
+
+  display: flex;
+
+  gap: 20px;
+
+  align-items: stretch;
+
+}
+
+
+.graph-y-axis {
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  padding: 10px 0;
+
+  color: var(--accent);
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+}
+
+
+.graph-area {
+
+  flex: 1;
+
+  position: relative;
+
+}
+
+
+.graph-x-axis {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 15px;
+
+  color: var(--accent);
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+}
+
+
+/* NEW FEATURE 6: Testimonials Carousel */
+
+.testimonials-section {
+
+  background: linear-gradient(135deg, rgba(2, 6, 23, 0.5), rgba(11, 102, 35, 0.1));
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+.testimonials-carousel {
+
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  position: relative;
+
+  padding: 40px 0;
+
+}
+
+
+.testimonial-card {
+
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(11, 102, 35, 0.2));
+
+  backdrop-filter: blur(20px);
+
+  border: 2px solid var(--accent);
+
+  padding: 50px 40px;
+
+  border-radius: 24px;
+
+  text-align: center;
+
+  display: none;
+
+  animation: fadeIn 0.5s ease;
+
+}
+
+
+.testimonial-card.active {
+
+  display: block;
+
+}
+
+
+@keyframes fadeIn {
+
+  from { opacity: 0; transform: translateY(20px); }
+
+  to { opacity: 1; transform: translateY(0); }
+
+}
+
+
+.testimonial-quote {
+
+  font-size: 20px;
+
+  color: var(--accent);
+
+  font-style: italic;
+
+  line-height: 1.8;
+
+  margin-bottom: 30px;
+
+  position: relative;
+
+}
+
+
+.testimonial-quote::before {
+
+  content: '"';
+
+  font-size: 60px;
+
+  color: var(--primary);
+
+  position: absolute;
+
+  top: -20px;
+
+  left: -10px;
+
+  font-family: serif;
+
+}
+
+
+.testimonial-author {
+
+  color: var(--accent-light);
+
+  font-weight: 700;
+
+  font-size: 18px;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  margin-bottom: 5px;
+
+}
+
+
+.testimonial-role {
+
+  color: var(--accent);
+
+  font-size: 14px;
+
+}
+
+
+.carousel-dots {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 30px;
+
+}
+
+
+.carousel-dot {
+
+  width: 12px;
+
+  height: 12px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  border: none;
+
+}
+
+
+.carousel-dot.active {
+
+  background: var(--primary);
+
+  transform: scale(1.3);
+
+}
+
+
+/* NEW FEATURE 8: Newsletter Popup */
+
+.newsletter-popup {
+
+  position: fixed;
+
+  bottom: -400px;
+
+  right: 40px;
+
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(11, 102, 35, 0.3));
+
+  backdrop-filter: blur(20px);
+
+  border: 2px solid var(--accent);
+
+  border-radius: 24px;
+
+  padding: 30px;
+
+  max-width: 400px;
+
+  z-index: 9999;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+  transition: bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+
+.newsletter-popup.show {
+
+  bottom: 40px;
+
+}
+
+
+.newsletter-close {
+
+  position: absolute;
+
+  top: 15px;
+
+  right: 15px;
+
+  background: none;
+
+  border: none;
+
+  color: var(--accent);
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+  transition: color 0.3s ease;
+
+}
+
+
+.newsletter-close:hover {
+
+  color: var(--accent-light);
+
+}
+
+
+.newsletter-popup h3 {
+
+  color: var(--accent-light);
+
+  font-size: 24px;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  margin-bottom: 10px;
+
+}
+
+
+.newsletter-popup p {
+
+  color: var(--accent);
+
+  font-size: 14px;
+
+  margin-bottom: 20px;
+
+  line-height: 1.6;
+
+}
+
+
+.newsletter-form {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+}
+
+
+.newsletter-form input {
+
+  padding: 14px 18px;
+
+  border-radius: 12px;
+
+  border: 2px solid var(--accent);
+
+  background: rgba(15, 23, 42, 0.6);
+
+  color: var(--text);
+
+  font-size: 14px;
+
+  font-family: 'Crimson Pro', serif;
+
+  transition: all 0.3s ease;
+
+}
+
+
+.newsletter-form input:focus {
+
+  outline: none;
+
+  border-color: var(--primary);
+
+  box-shadow: 0 0 15px rgba(11, 102, 35, 0.3);
+
+}
+
+
+.newsletter-form button {
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  border: none;
+
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+
+  color: white;
+
+  font-weight: 600;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+}
+
+
+.newsletter-form button:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(11, 102, 35, 0.4);
+
+}
+
+
+/* NEW FEATURE 9: Live Chat Widget */
+
+.chat-widget {
+
+  position: fixed;
+
+  bottom: 100px;
+
+  right: 40px;
+
+  z-index: 9998;
+
+}
+
+
+.chat-button {
+
+  width: 60px;
+
+  height: 60px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+
+  border: 2px solid var(--accent);
+
+  color: white;
+
+  font-size: 28px;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 30px rgba(11, 102, 35, 0.4);
+
+  transition: all 0.3s ease;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  animation: pulse-ring 2s infinite;
+
+}
+
+
+@keyframes pulse-ring {
+
+  0% { box-shadow: 0 0 0 0 rgba(11, 102, 35, 0.7); }
+
+  70% { box-shadow: 0 0 0 20px rgba(11, 102, 35, 0); }
+
+  100% { box-shadow: 0 0 0 0 rgba(11, 102, 35, 0); }
+
+}
+
+
+.chat-button:hover {
+
+  transform: scale(1.1);
+
+}
+
+
+.chat-window {
+
+  position: absolute;
+
+  bottom: 80px;
+
+  right: 0;
+
+  width: 350px;
+
+  height: 500px;
+
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(11, 102, 35, 0.2));
+
+  backdrop-filter: blur(20px);
+
+  border: 2px solid var(--accent);
+
+  border-radius: 20px;
+
+  display: none;
+
+  flex-direction: column;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+  overflow: hidden;
+
+}
+
+
+.chat-window.active {
+
+  display: flex;
+
+}
+
+
+.chat-header {
+
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+
+  padding: 20px;
+
+  color: white;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+}
+
+
+.chat-header h4 {
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  font-size: 18px;
+
+}
+
+
+.chat-close {
+
+  background: none;
+
+  border: none;
+
+  color: white;
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+}
+
+
+.chat-messages {
+
+  flex: 1;
+
+  padding: 20px;
+
+  overflow-y: auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+
+}
+
+
+.chat-message {
+
+  padding: 12px 16px;
+
+  border-radius: 12px;
+
+  max-width: 80%;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+}
+
+
+.chat-message.bot {
+
+  background: rgba(11, 102, 35, 0.2);
+
+  border: 1px solid var(--primary);
+
+  color: var(--text);
+
+  align-self: flex-start;
+
+}
+
+
+.chat-message.user {
+
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+
+  color: var(--dark);
+
+  align-self: flex-end;
+
+}
+
+
+.chat-input-area {
+
+  padding: 15px;
+
+  border-top: 2px solid var(--accent);
+
+  display: flex;
+
+  gap: 10px;
+
+}
+
+
+.chat-input-area input {
+
+  flex: 1;
+
+  padding: 12px;
+
+  border-radius: 20px;
+
+  border: 2px solid var(--accent);
+
+  background: rgba(15, 23, 42, 0.6);
+
+  color: var(--text);
+
+  font-size: 14px;
+
+}
+
+
+.chat-input-area input:focus {
+
+  outline: none;
+
+  border-color: var(--primary);
+
+}
+
+
+.chat-send {
+
+  padding: 12px 20px;
+
+  border-radius: 20px;
+
+  border: none;
+
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+}
+
+
+.chat-send:hover {
+
+  transform: scale(1.05);
+
+}
+
+
+/* NEW FEATURE 10: Parallax Section */
+
+.parallax-section {
+
+  min-height: 500px;
+
+  background: linear-gradient(135deg, rgba(2, 6, 23, 0.8), rgba(11, 102, 35, 0.3)),
+
+              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%230B6623;stop-opacity:0.3"/><stop offset="100%" style="stop-color:%23C0C0C0;stop-opacity:0.1"/></linearGradient></defs><rect fill="url(%23grad)" width="1200" height="600"/></svg>');
+
+  background-size: cover;
+
+  background-attachment: fixed;
+
+  background-position: center;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+.parallax-content {
+
+  text-align: center;
+
+  z-index: 10;
+
+  max-width: 800px;
+
+  padding: 40px;
+
+}
+
+
+.parallax-content h2 {
+
+  font-size: clamp(36px, 6vw, 56px);
+
+  color: var(--accent-light);
+
+  margin-bottom: 20px;
+
+  text-shadow: 0 0 30px rgba(232, 232, 232, 0.3);
+
+}
+
+
+.parallax-content p {
+
+  font-size: 20px;
+
+  color: var(--accent);
+
+  margin-bottom: 30px;
+
+  line-height: 1.8;
+
+}
+
+
+#contact-section {
+
+  text-align: center;
+
+}
+
+
+.contact-container {
+
+  max-width: 700px;
+
+  width: 100%;
+
+  margin: 0 auto;
+
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(11, 102, 35, 0.2));
+
+  backdrop-filter: blur(20px);
+
+  border: 2px solid var(--accent);
+
+  padding: 60px 50px;
+
+  border-radius: 24px;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(192, 192, 192, 0.2);
+
+  text-align: center;
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+.contact-container::before {
+
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  background: radial-gradient(circle at 50% 50%, rgba(232, 232, 232, 0.1) 0%, transparent 70%);
+
+  pointer-events: none;
+
+  z-index: 0;
+
+}
+
+
+.contact-container > * {
+
+  position: relative;
+
+  z-index: 1;
+
+}
+
+
+.call-icon {
+
+  font-size: 64px;
+
+  margin-bottom: 20px;
+
+  animation: pulse 2s infinite;
+
+  text-shadow: 0 0 20px rgba(232, 232, 232, 0.4);
+
+}
+
+
+@keyframes pulse {
+
+  0%, 100% { transform: scale(1); }
+
+  50% { transform: scale(1.1); }
+
+}
+
+
+.contact-container h3 {
+
+  color: var(--accent-light);
+
+  font-size: 32px;
+
+  font-family: 'Crimson Pro', serif;
+
+  margin-bottom: 16px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+
+}
+
+
+.call-description {
+
+  color: var(--accent);
+
+  font-size: 16px;
+
+  line-height: 1.7;
+
+  margin-bottom: 40px;
+
+  max-width: 550px;
+
+  margin-left: auto;
+
+  margin-right: auto;
+
+}
+
+
+.contact-container .buttons {
+
+  margin-bottom: 24px;
+
+}
+
+
+.call-btn {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  font-size: 16px;
+
+}
+
+
+.btn-icon {
+
+  font-size: 20px;
+
+}
+
+
+.call-note {
+
+  color: var(--accent);
+
+  font-size: 14px;
+
+  font-style: italic;
+
+}
+
+
+footer {
+
+  background: var(--dark);
+
+  border-top: 2px solid var(--accent);
+
+  color: var(--accent);
+
+  padding: 60px 40px 40px;
+
+  font-size: 14px;
+
+}
+
+
+.footer-content {
+
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 40px;
+
+}
+
+
+.footer-main {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  flex-wrap: wrap;
+
+  gap: 40px;
+
+}
+
+
+.footer-brand {
+
+  flex: 1;
+
+  min-width: 250px;
+
+}
+
+
+.footer-logo {
+
+  font-size: 24px;
+
+  font-weight: 700;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  background: linear-gradient(135deg, var(--accent-light), var(--accent), var(--primary));
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+
+  margin-bottom: 16px;
+
+  display: inline-block;
+
+}
+
+
+.footer-brand p {
+
+  color: var(--accent);
+
+  line-height: 1.6;
+
+  margin-bottom: 20px;
+
+}
+
+
+.footer-contact {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+}
+
+
+.footer-contact a {
+
+  color: var(--accent);
+
+  text-decoration: none;
+
+  transition: color 0.3s ease;
+
+}
+
+
+.footer-contact a:hover {
+
+  color: var(--accent-light);
+
+}
+
+
+.footer-links {
+
+  display: flex;
+
+  gap: 60px;
+
+  flex-wrap: wrap;
+
+}
+
+
+.footer-column h4 {
+
+  color: var(--accent-light);
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  margin-bottom: 16px;
+
+}
+
+
+.footer-column ul {
+
+  list-style: none;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+}
+
+
+.footer-column a {
+
+  color: var(--accent);
+
+  text-decoration: none;
+
+  transition: color 0.3s ease;
+
+  font-size: 14px;
+
+}
+
+
+.footer-column a:hover {
+
+  color: var(--accent-light);
+
+}
+
+
+.footer-bottom {
+
+  text-align: center;
+
+  padding-top: 30px;
+
+  border-top: 2px solid var(--accent);
+
+}
+
+
+#backToTop {
+
+  position: fixed;
+
+  bottom: 40px;
+
+  right: 40px;
+
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+
+  color: var(--dark);
+
+  border: 2px solid var(--primary);
+
+  padding: 14px 20px;
+
+  border-radius: 50px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  font-size: 14px;
+
+  display: none;
+
+  z-index: 999;
+
+  box-shadow: 0 10px 30px rgba(192, 192, 192, 0.4);
+
+  transition: all 0.3s ease;
+
+}
+
+
+#backToTop:hover {
+
+  transform: translateY(-4px);
+
+  box-shadow: 0 15px 40px rgba(192, 192, 192, 0.6);
+
+}
+
+
+.fade-in {
+
+  opacity: 0;
+
+  transform: translateY(30px);
+
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+
+.fade-in.appear {
+
+  opacity: 1;
+
+  transform: translateY(0);
+
+}
+
+
+@media (max-width: 1024px) {
+
+  nav {
+
+    padding: 16px 30px;
+
+  }
+
+  
+
+  .hero h1 {
+
+    font-size: 48px;
+
+  }
+
+  
+
+  section {
+
+    padding: 80px 30px;
+
+  }
+
+  
+
+  .process-arrow {
+
+    display: none;
+
+  }
+
+  
+
+  .process-container {
+
+    flex-direction: column;
+
+  }
+
+  
+
+  .process-step {
+
+    max-width: 100%;
+
+  }
+
+
+  .footer-main {
+
+    flex-direction: column;
+
+  }
+
+
+  .footer-links {
+
+    gap: 30px;
+
+  }
+
+
+  .newsletter-popup {
+
+    right: 20px;
+
+    max-width: calc(100% - 40px);
+
+  }
+
+
+  .chat-widget {
+
+    right: 20px;
+
+  }
+
+
+  .chat-window {
+
+    width: calc(100vw - 40px);
+
+    max-width: 350px;
+
+  }
+
+}
+
+
+@media (max-width: 768px) {
+
+  body {
+
+    cursor: auto;
+
+  }
+
+
+  .custom-cursor,
+
+  .custom-cursor-dot {
+
+    display: none;
+
+  }
+
+
+  nav ul {
+
+    display: none;
+
+  }
+
+
+  .nav-right {
+
+    gap: 15px;
+
+  }
+
+  
+
+  .hero {
+
+    padding: 120px 20px 60px;
+
+  }
+
+  
+
+  .buttons {
+
+    flex-direction: column;
+
+    width: 100%;
+
+    max-width: 300px;
+
+    margin: 0 auto;
+
+  }
+
+  
+
+  .cards {
+
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+
+  }
+
+  
+
+  section {
+
+    padding: 60px 20px;
+
+  }
+
+  
+
+  .contact-container {
+
+    padding: 40px 24px;
+
+  }
+
+  
+
+  .metrics-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .pricing-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .pricing-card.featured {
+
+    transform: scale(1);
+
+  }
+
+  
+
+  .performance-graph {
+
+    flex-direction: column;
+
+  }
+
+  
+
+  .graph-y-axis {
+
+    flex-direction: row;
+
+    justify-content: space-around;
+
+  }
+
+
+  footer {
+
+    padding: 40px 20px 30px;
+
+  }
+
+
+  .service-card-wrapper {
+
+    height: auto;
+
+  }
+
+
+  .parallax-section {
+
+    background-attachment: scroll;
+
+  }
+
+}
+
+
+#particles-canvas {
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  pointer-events: none;
+
+  opacity: 0.5;
+
+  z-index: 4;
+
+}
+
+
+.center-text {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center; 
+
+  text-align: center;  
+
+  justify-content: center; 
+
+  margin-top: 100px;
+
+  margin-bottom: 60px; 
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <img src="images/logo1.jpeg" alt="Logo">
-                </div>
-                <div class="menu-toggle"> &#9776;</div> <!-- buton hamburger -->
-                <ul id="menuList">
-                    <li><a href="#services" class="nav-active">Services</a></li>
-                    <li><a href="#results">Results</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#reviews">Reviews</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+
+ <!-- Updated Limited Time Offer Banner -->
+
+<div class="top-offer-banner">
+
+  <span>LIMITED TIME OFFER —</span>
+
+  <span class="highlight-offer">ACCEPTING ONLY 3 FIRMS THIS MONTH</span>
+
+</div>
+
+
+<!-- NEW FEATURE 1: Custom Cursor -->
+
+<div class="custom-cursor"></div>
+
+<div class="custom-cursor-dot"></div>
+
+
+<!-- NEW FEATURE 2: Scroll Progress Bar -->
+
+<div class="scroll-progress"></div>
+
+
+<nav id="navbar">
+
+  <a href="#hero" class="logo">Project S</a>
+
+  
+
+  <div class="nav-right">
+
+    <ul>
+
+      <li><a href="#hero">Home</a></li>
+
+      <li><a href="#reviews-section">About</a></li>
+
+      <li><a href="#services-section">Services</a></li>
+
+      <li><a href="#contact-section">Contact</a></li>
+
+      <li><a href="#offer-section">Solutions</a></li>
+
+      <li><a href="#contact-section" class="nav-cta">Get Started</a></li>
+
+    </ul>
+
+  </div>
+
+</nav>
+
+
+<section class="hero" id="hero">
+
+  <canvas id="particles-canvas"></canvas>
+
+  <div class="orb orb1"></div>
+
+  <div class="orb orb2"></div>
+
+  <div class="orb orb3"></div>
+
+  
+
+  <div class="hero-content">
+
+    <span class="section-badge">Welcome to the Future</span>
+
+    <h1>Marketing That <span class="highlight"></span></h1>
+
+    <p>We help accounting firms and professional service companies grow through tailored, data-driven marketing campaigns that increase revenue and client acquisition.</p>
+
+    <div class="buttons">
+
+      <a href="#contact-section" class="btn primary">Book a Call</a>
+
+      <a href="#services-section" class="btn secondary">Our Services</a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="reviews-section">
+
+  <span class="section-badge">What We Do</span>
+
+  <h2>We Specialize in Growing Accountancy Firms</h2>
+
+  <p>Project S is dedicated to one thing: explosive growth for accounting and professional service firms. Through proven marketing strategies and relentless optimization, we help you dominate your market and scale your business.</p>
+
+  
+
+  <div class="cards">
+
+    <div class="info-card fade-in">
+
+      <div class="info-icon">🚀</div>
+
+      <h3>Growth-First Approach</h3>
+
+      <p>Every strategy, campaign, and decision is designed with one goal: measurable business growth. We don't do vanity metrics—only results that impact your bottom line.</p>
+
+    </div>
+
+    
+
+    <div class="info-card fade-in">
+
+      <div class="info-icon">🎯</div>
+
+      <h3>Accountancy Specialists</h3>
+
+      <p>We exclusively work with accounting firms. This deep specialization means we understand your clients, your challenges, and exactly what it takes to win in your market.</p>
+
+    </div>
+
+    
+
+    <div class="info-card fade-in">
+
+      <div class="info-icon">💎</div>
+
+      <h3>Proven Track Record</h3>
+
+      <p>Our clients consistently achieve 2-3x growth within 6 months. We've refined our approach through years of experience growing firms just like yours.</p>
+
+    </div>
+
+  </div>
+<div class="center-text">
+
+    <span class="section-badge">Getting Started</span>
+
+    <h2>How to Start Growing Your Firm</h2>
+
+    <p>From first contact to explosive growth in just 2-3 weeks. Our streamlined process gets you results fast.</p>
+
+  </div>
+
+    
+
+  <div class="process-container">
+
+    <div class="process-step fade-in">
+
+      <div class="step-number">1</div>
+
+      <h3>Discovery Call</h3>
+
+      <p>30-minute consultation to understand your firm, goals, and growth potential. We'll identify quick wins and long-term opportunities.</p>
+
+    </div>
+
+    
+
+    <div class="process-arrow">→</div>
+
+    
+
+    <div class="process-step fade-in">
+
+      <div class="step-number">2</div>
+
+      <h3>Custom Growth Plan</h3>
+
+      <p>We create a tailored marketing strategy designed specifically for your firm's market position and target clients.</p>
+
+    </div>
+
+    
+
+    <div class="process-arrow">→</div>
+
+    
+
+    <div class="process-step fade-in">
+
+      <div class="step-number">3</div>
+
+      <h3>Rapid Implementation</h3>
+
+      <p>We handle everything—setup, integration, content creation, and campaign launch. You stay focused on serving clients.</p>
+
+    </div>
+
+    
+
+    <div class="process-arrow">→</div>
+
+    
+
+    <div class="process-step fade-in">
+
+      <div class="step-number">4</div>
+
+      <h3>Scale & Optimize</h3>
+
+      <p>Continuous testing, optimization, and scaling. We relentlessly improve your results month after month.</p>
+
+    </div>
+
+  </div>
+
+
+  <div class="center-text">
+
+    <span class="section-badge">Real Numbers</span>
+
+    <h2>Average Client Performance</h2>
+
+  </div>
+
+    
+
+    <!-- NEW FEATURE 5: Animated Statistics Counter -->
+
+    <div class="metrics-grid">
+
+      <div class="metric-card fade-in" data-target="1.6">
+
+        <div class="metric-icon">📈</div>
+
+        <div class="metric-value">0</div>
+
+        <div class="metric-label">Revenue Growth</div>
+
+        <div class="metric-sublabel">Within first 12 months</div>
+
+      </div>
+
+      
+
+      <div class="metric-card fade-in" data-target="158">
+
+        <div class="metric-icon">👥</div>
+
+        <div class="metric-value">0%</div>
+
+        <div class="metric-label">Lead Increase</div>
+
+        <div class="metric-sublabel">Qualified inquiries monthly</div>
+
+      </div>
+
+      
+
+      <div class="metric-card fade-in" data-target="2.3">
+
+        <div class="metric-icon">💰</div>
+
+        <div class="metric-value">0</div>
+
+        <div class="metric-label">Marketing ROI</div>
+
+        <div class="metric-sublabel">Average return on spend</div>
+
+      </div>
+
+      
+
+      <div class="metric-card fade-in" data-target="66">
+
+        <div class="metric-icon">⚡</div>
+
+        <div class="metric-value">0%</div>
+
+        <div class="metric-label">Client Retention</div>
+
+        <div class="metric-sublabel">12-month retention rate</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="graph-container fade-in">
+
+      <h3>Typical Client Growth Trajectory</h3>
+
+      <p style="color: var(--accent); margin-bottom: 30px;">Average revenue growth over 12 months working with Project S</p>
+
+      <div class="performance-graph">
+
+        <div class="graph-y-axis">
+
+          <span>300%</span>
+
+          <span>250%</span>
+
+          <span>200%</span>
+
+          <span>150%</span>
+
+          <span>100%</span>
+
+          <span>50%</span>
+
         </div>
-    </header>
 
-    <main>
-        <section class="hero-section">
-            <div class="container text-center">
-                <!-- <img src="images/background1.jpg" alt="Project Logo" class="project-logo"> -->
-                <p class="welcome-text">Welcome to</p>
-                <h1>Marketing That Delivers<br>Results</h1>
-                <p class="description">We help businesses grow through data-driven marketing campaigns that increase
-                    revenue, boost brand awareness, and deliver measurable ROI.</p>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <img src="images/ROI.png" alt="ROI icon">
-                        <p class="stat-value">312%</p>
-                        <p class="stat-label">Average ROI Increase</p>
-                    </div>
-                    <div class="stat-item">
-                        <img src="images/bussines-icon.png" alt="Businesses icon">
-                        <p class="stat-value">30+</p>
-                        <p class="stat-label">Businesses Transformed</p>
-                    </div>
-                    <div class="stat-item">
-                        <img src="images/satisfaction.png" alt="Satisfaction icon">
-                        <p class="stat-value">98%</p>
-                        <p class="stat-label">Client Satisfaction</p>
-                    </div>
-                </div>
-                <div class="cta-buttons">
-                    <a href="#results" class="btn btn-primary">See Our Results</a>
-                    <a href="#contact" class="btn btn-secondary">Get Free Consultation</a>
-                </div>
-                <div class="scroll-indicator">
-                    <img src="images/arrow.png" alt="scroll down">
-                </div>
-            </div>
-        </section>
-        <section class="services-section" id="services">
-            <div class="container">
-                <div class="services-header text-center">
-                    <h2>Our Marketing Services</h2>
-                    <p>We offer comprehensive marketing solutions tailored to your business needs. Every strategy is
-                        backed by data, optimized for results, and designed to grow your business.</p>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="icon-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-volume-2">
-                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                            </svg>
-                        </div>
-                        <h3>Social Media Marketing</h3>
-                        <p>Comprehensive social media strategies that build brand awareness, engage audiences, and drive
-                            conversions across all major platforms.</p>
-                        <ul>
-                            <li>Content Creation</li>
-                            <li>Community Management</li>
-                            <li>Paid Advertising</li>
-                            <li>Analytics & Reporting</li>
-                        </ul>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-search">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            </svg>
-                        </div>
-                        <h3>Search Engine Optimization</h3>
-                        <p>Data-driven SEO strategies that improve search rankings, increase organic traffic, and boost
-                            online visibility.</p>
-                        <ul>
-                            <li>Keyword Research</li>
-                            <li>On-Page Optimization</li>
-                            <li>Link Building</li>
-                            <li>Technical SEO</li>
-                        </ul>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-bar-chart">
-                                <line x1="12" y1="20" x2="12" y2="10"></line>
-                                <line x1="18" y1="20" x2="18" y2="4"></line>
-                                <line x1="6" y1="20" x2="6" y2="16"></line>
-                            </svg>
-                        </div>
-                        <h3>Performance Marketing</h3>
-                        <p>Results-focused campaigns designed to maximize ROI through precise targeting and continuous
-                            optimization.</p>
-                        <ul>
-                            <li>Google Ads</li>
-                            <li>Facebook Ads</li>
-                            <li>Conversion Tracking</li>
-                            <li>A/B Testing</li>
-                        </ul>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-message-square">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V3a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                            </svg>
-                        </div>
-                        <h3>Content Marketing</h3>
-                        <p>Strategic content creation that tells your brand story, educates your audience, and drives
-                            meaningful engagement.</p>
-                        <ul>
-                            <li>Blog Writing</li>
-                            <li>Video Content</li>
-                            <li>Email Campaigns</li>
-                            <li>Brand Storytelling</li>
-                        </ul>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-users">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87c-.89-.02-1.72-.11-2.5-2.02"></path>
-                                <circle cx="17" cy="5" r="3"></circle>
+        <div class="graph-area">
 
-                            </svg>
-                        </div>
-                        <h3>Influencer Marketing</h3>
-                        <p>Authentic partnerships with relevant influencers to expand reach and build trust with your
-                            target audience.</p>
-                        <ul>
-                            <li>Influencer Selection</li>
-                            <li>Campaign Management</li>
-                            <li>Content Collaboration</li>
-                            <li>Performance Tracking</li>
-                        </ul>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-zap">
-                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                            </svg>
-                        </div>
-                        <h3>Marketing Automation</h3>
-                        <p>Streamlined marketing processes that nurture leads, retain customers, and scale your business
-                            efficiently.</p>
-                        <ul>
-                            <li>Lead Nurturing</li>
-                            <li>Email Automation</li>
-                            <li>CRM Integration</li>
-                            <li>Customer Journey Mapping</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="call-to-action">
-            <div class="container text-center">
-                <h2>Ready to Transform Your Marketing?</h2>
-                <p>Let's discuss how our proven strategies can help your business achieve its marketing goals.</p>
-            </div>
-        </section>
+          <svg viewBox="0 0 600 300" style="width: 100%; height: 100%;">
 
-        <section class="results-section" id="results">
-            <div class="container">
-                <div class="results-header text-center">
-                    <h3>Proven Results</h3>
-                    <p>Real businesses, real growth. See how our data-driven marketing strategies have transformed our
-                        clients' success stories.</p>
-                </div>
-                <div class="case-study-card">
-                    <div class="case-study-image">
-                        <img src="images/social-media.jpg" alt="Social Media Marketing documents">
-                    </div>
-                    <div class="case-study-content">
-                        <div class="tags">
-                            <span class="tag">Retail</span>
-                            <span class="tag">SEO</span>
-                            <span class="tag">Social Media</span>
-                            <span class="tag">Paid Ads</span>
-                        </div>
-                        <h4>E-commerce Fashion Brand</h4>
-                        <p class="description">Complete digital marketing transformation for a struggling online fashion
-                            retailer. Implemented SEO, social media marketing, and performance advertising.</p>
-                        <div class="growth-results">
-                            <div class="growth-circle">
-                                <p>2.5x</p>
-                            </div>
-                            <div class="growth-text">
-                                <p class="growth-label">Average Growth Results</p>
-                                <p class="growth-sublabel">Consistent improvements across all campaigns</p>
-                            </div>
-                        </div>
-                        <p class="timeframe">Results achieved in 6 months</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="results-section">
-            <div class="container">
-                <div class="case-study-grid">
-                    <div class="case-study-card">
-                        <div class="case-study-image">
-                            <img src="images/teck.jpg" alt="Tech Startup data">
-                        </div>
-                        <div class="case-study-content">
-                            <div class="tags">
-                                <span class="tag">Technology</span>
-                                <span class="tag">LinkedIn Ads</span>
-                                <span class="tag">Content Marketing</span>
-                                <span class="tag">Email</span>
-                            </div>
-                            <h4>Tech Startup B2B</h4>
-                            <p class="description">Lead generation campaign for a B2B SaaS company looking to scale
-                                their customer acquisition.</p>
-                            <div class="growth-results">
-                                <div class="growth-circle">
-                                    <p>2.5x</p>
-                                </div>
-                                <div class="growth-text">
-                                    <p class="growth-label">Growth Results</p>
-                                </div>
-                            </div>
-                            <p class="timeframe">Achieved in 4 months</p>
-                        </div>
-                    </div>
-                    <div class="case-study-card">
-                        <div class="case-study-image">
-                            <img src="images/teck2.jpg" alt="Wooden blocks">
-                        </div>
-                        <div class="case-study-content">
-                            <div class="tags">
-                                <span class="tag">Food & Beverage</span>
-                                <span class="tag">Local SEO</span>
-                                <span class="tag">Social Media</span>
-                                <span class="tag">Review Management</span>
-                            </div>
-                            <h4>Local Restaurant Chain</h4>
-                            <p class="description">Local SEO and social media strategy to increase foot traffic and
-                                online orders for a restaurant chain.</p>
-                            <div class="growth-results">
-                                <div class="growth-circle">
-                                    <p>2.5x</p>
-                                </div>
-                                <div class="growth-text">
-                                    <p class="growth-label">Growth Results</p>
-                                </div>
-                            </div>
-                            <p class="timeframe">Achieved in 5 months</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <line x1="0" y1="50" x2="600" y2="50" stroke="rgba(232, 232, 232, 0.1)" stroke-width="1"/>
 
-        <section class="pricing-section" id="pricing">
-            <div class="container text-center">
-                <h2>Results-Based Pricing</h2>
-                <p>Our pricing is based on the results we deliver. We only succeed when you succeed. Investment ranges
-                    from <strong>£50 to £250</strong> depending on your business needs and growth targets.</p>
-            </div>
-        </section>
-        <section class="pricing-details">
-            <div class="container text-center">
-                <h4>Why Results-Based Pricing?</h4>
-                <p>We believe in transparency and accountability. Our pricing structure ensures that you only pay for
-                    marketing that actually drives your business forward. We track every metric that matters to your
-                    bottom line and adjust our strategies in real-time to maximize your ROI.</p>
-                <div class="pricing-features">
-                    <div class="feature-item">
-                        <p class="feature-value">0%</p>
-                        <p class="feature-label">Setup Fees</p>
-                    </div>
-                    <div class="feature-item">
-                        <p class="feature-value">30-Day</p>
-                        <p class="feature-label">Money-Back Guarantee</p>
-                    </div>
-                    <div class="feature-item">
-                        <p class="feature-value">24/7</p>
-                        <p class="feature-label">Performance Monitoring</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <line x1="0" y1="100" x2="600" y2="100" stroke="rgba(232, 232, 232, 0.1)" stroke-width="1"/>
 
-        <section class="reviews-section" id="reviews">
-            <div class="container text-center">
-                <div class="reviews-header">
-                    <h3>What Our Clients Say</h3>
-                    <div class="stars">
-                        <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                    </div>
-                    <p class="rating-text"><span>4.8</span>/5 (<span>9 reviews</span>)</p>
-                    <p>Don't just take our word for it. Here's what real businesses say about working with Project S.
-                    </p>
-                </div>
+            <line x1="0" y1="150" x2="600" y2="150" stroke="rgba(232, 232, 232, 0.1)" stroke-width="1"/>
 
-                <div class="reviews-grid">
-                    <div class="review-card">
-                        <div class="star-rating">
-                            <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                        </div>
-                        <p class="review-text">"Project S transformed our online presence completely. In just 4 months,
-                            our revenue increased by 180%. Their social media campaigns are absolutely brilliant and the
-                            team is incredibly responsive."</p>
-                        <p class="reviewer-name">Sarah Mitchell</p>
-                        <p class="reviewer-company">Bloom Boutique</p>
-                        <p class="reviewer-location">Manchester, UK</p>
-                    </div>
-                    <div class="review-card">
-                        <div class="star-rating">
-                            <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                        </div>
-                        <p class="review-text">"Outstanding results! They helped us generate 75 qualified leads per
-                            month through LinkedIn and content marketing. The ROI has been fantastic - definitely the
-                            best marketing investment we've made."</p>
-                        <p class="reviewer-name">David Chen</p>
-                        <p class="reviewer-company">TechFlow Solutions</p>
-                        <p class="reviewer-location">London, UK</p>
-                    </div>
-                    <div class="review-card">
-                        <div class="star-rating">
-                            <span>&#9733;&#9733;&#9733;&#9733;</span><span>&#9733;</span>
-                        </div>
-                        <p class="review-text">"Really impressed with their local SEO work. We now appear in the top 3
-                            Google results for all our key terms. Online orders have tripled and our Google reviews went
-                            from 3.1 to 4.8 stars!"</p>
-                        <p class="reviewer-name">Emma Rodriguez</p>
-                        <p class="reviewer-company">Healthy Bites Cafe</p>
-                        <p class="reviewer-location">Birmingham, UK</p>
-                    </div>
+            <line x1="0" y1="200" x2="600" y2="200" stroke="rgba(232, 232, 232, 0.1)" stroke-width="1"/>
 
-                    <div class="review-card">
-                        <div class="star-rating">
-                            <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                        </div>
-                        <p class="review-text">"Professional, data-driven, and results-focused. Project S helped us
-                            build a marketing system that consistently brings in new clients. Their reporting is
-                            detailed and their strategies actually work."</p>
-                        <p class="reviewer-name">James Thompson</p>
-                        <p class="reviewer-company">Thompson & Associates</p>
-                        <p class="reviewer-location">Edinburgh, UK</p>
-                    </div>
-                    <div class="review-card">
-                        <div class="star-rating">
-                            <span>&#9733;&#9733;&#9733;&#9733;</span><span>&#9733;</span>
-                        </div>
-                        <p class="review-text">"The best marketing agency we've ever worked with. They increased our
-                            membership sign-ups by 220% and helped us build a strong community on social media. Highly
-                            recommend their services!"</p>
-                        <p class="reviewer-name">Lisa Parker</p>
-                        <p class="reviewer-company">FitLife Gym</p>
-                        <p class="reviewer-location">Leeds, UK</p>
-                    </div>
+            <line x1="0" y1="250" x2="600" y2="250" stroke="rgba(232, 232, 232, 0.1)" stroke-width="1"/>
 
-                    <div class="review-card">
-                        <div class="star-rating">
-                            <span>&#9733;&#9733;&#9733;&#9733;</span><span>&#9733;</span>
-                        </div>
-                        <p class="review-text">"Excellent work on our website and SEO. We're now getting 3-4 new project
-                            inquiries every week through our website. The team understood our industry and delivered
-                            exactly what we needed."</p>
-                        <p class="reviewer-name">Michael Johnson</p>
-                        <p class="reviewer-company">Johnson Construction</p>
-                        <p class="reviewer-location">Bristol, UK</p>
-                    </div>
+    
 
-                    <div class="review-card">
-                        <div class="star-rating">
-                            <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                        </div>
-                        <p class="review-text">"Amazing results in such a short time! Our Facebook and Instagram
-                            following grew from 200 to over 5,000 in 6 months. The quality of leads has improved
-                            dramatically and our booking calendar is full."</p>
-                        <p class="reviewer-name">Rachel Green</p>
-                        <p class="reviewer-company">Green Spaces Landscaping</p>
-                        <p class="reviewer-location">Liverpool, UK</p>
-                    </div>
-                    <div class="review-card">
-                        <div class="star-rating">
-                            <span>&#9733;&#9733;&#9733;&#9733;</span><span>&#9733;</span>
-                        </div>
-                        <p class="review-text">"Project S created a comprehensive digital marketing strategy that is
-                            brought us consistent new clients. Their Google Ads management is top-notch and their
-                            monthly reports are very insightful."</p>
-                        <p class="reviewer-name">Tom Watson</p>
-                        <p class="reviewer-company">Watson Legal Services</p>
-                        <p class="reviewer-location">Glasgow, UK</p>
-                    </div>
-                    <div class="review-card">
-                        <div class="star-rating">
-                            <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                        </div>
-                        <p class="review-text">"Incredible transformation of my business! They helped me go from
-                            struggling freelancer to fully booked photographer. Their Instagram strategy and website
-                            optimization made all the difference."</p>
-                        <p class="reviewer-name">Sophie Allen</p>
-                        <p class="reviewer-company">Allen Photography</p>
-                        <p class="reviewer-location">Brighton, UK</p>
-                    </div>
+            <defs>
 
-                </div>
-            </div>
-        </section>
+              <linearGradient id="graphGradient" x1="0%" y1="0%" x2="0%" y2="100%">
 
-        <section class="cta-bottom">
-            <div class="container text-center">
-                <h4>Ready to Join Our Success Stories?</h4>
-                <p>Let's discuss how we can help your business achieve similar results. Get your free marketing
-                    consultation today.</p>
-            </div>
-        </section>
-        <section class="cta-form-section">
-            <div class="container text-center">
-                <h4>Ready to Grow Your Business?</h4>
-                <p>Get in touch today for a free consultation. Let's discuss how Project S can transform your marketing
-                    and drive real results.</p>
-            </div>
-            <div class="container contact-content" id="contact">
-                <div class="contact-info">
-                    <h5>Get Your <span class="color-green">Free</span> Consultation</h5>
-                    <p>Ready to see 2.5x growth in your business? We're here to help you succeed. Whether you need a
-                        complete marketing overhaul or want to optimize your current campaigns, let's start the
-                        conversation.</p>
-                    <div class="info-item">
-                        <div class="info-icon-circle">
-                            <ion-icon name="mail"></ion-icon>
-                        </div>
-                        <div class="info-text-group">
-                            <p class="info-label">Email</p>
-                            <a href="mailto:Kbprojectsglobal@gmail.com"
-                                class="info-detail">Kbprojectsglobal@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon-circle">
-                            <ion-icon name="call"></ion-icon>
-                        </div>
-                        <div class="info-text-group">
-                            <p class="info-label">Phone</p>
-                            <a href="tel:+447435197955" class="info-detail">+44 7435 197 955</a>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon-circle">
-                            <ion-icon name="location"></ion-icon>
-                        </div>
-                        <div class="info-text-group">
-                            <p class="info-label">Service Area</p>
-                            <p class="info-detail">UK & International</p>
-                        </div>
-                    </div>
+                <stop offset="0%" style="stop-color:rgba(232, 232, 232, 0.6)" />
 
-                    <div class="info-item">
-                        <div class="info-icon-circle">
-                            <ion-icon name="logo-instagram"></ion-icon>
-                        </div>
-                        <div class="info-text-group">
-                            <p class="info-label">Instagram</p>
-                            <a href="https://www.instagram.com/officialkbproject/"
-                                class="info-detail">officialkbprojects</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form action="https://formspree.io/f/meorabyq" method="POST">
-                        <div class="form-group-inline">
-                            <div class="form-group">
-                                <label for="firstName">First Name</label>
-                                <input type="text" id="firstName" name="firstName" placeholder="John" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName">Last Name</label>
-                                <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="Project Inquiry " required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..."
-                                required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-send">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
+                <stop offset="100%" style="stop-color:rgba(192, 192, 192, 0)" />
 
-        <footer>
-            <div class="container footer-grid">
-                <div class="footer-about">
-                    <img src="images/logo1.jpeg" alt="Logo" class="footer-logo">
-                    <p>Results-driven marketing agency helping businesses grow through data-driven strategies, creative
-                        campaigns, and measurable ROI.</p>
-                    <div class="footer-contact">
-                        <div class="contact-item">
-                            <i class="fas fa-phone-alt"></i>
-                            <a href="tel:+447435197955" class="info-detail">+44 7435 197 955</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:Kbprojectsglobal@gmail.com"
-                                class="info-detail">Kbprojectsglobal@gmail.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p>Serving businesses nationwide</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h6>Services</h6>
-                    <ul>
-                        <li><a href="#services">Social Media Marketing</a></li>
-                        <li><a href="#services">SEO Optimization</a></li>
-                        <li><a href="#services">Performance Marketing</a></li>
-                        <li><a href="#services">Content Marketing</a></li>
-                        <li><a href="#services">Marketing Automation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h6>Company</h6>
-                    <ul>
-                        <li><a href="#results">Case Studies</a></li>
-                        <li><a href="#reviews">Client Reviews</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="/cookie-policy.html">Cookie Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 KB Project S. All rights reserved.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                </div>
-            </div>
-        </footer>
-    </main>
-    <script src="script.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+              </linearGradient>
+
+            </defs>
+
+            
+
+            <path d="M 0 300 L 0 250 L 120 210 L 240 165 L 360 115 L 480 75 L 600 35 L 600 300 Z" 
+
+                  fill="url(#graphGradient)"/>
+
+            
+
+            <path d="M 0 250 L 120 210 L 240 165 L 360 115 L 480 75 L 600 35" 
+
+                  stroke="#E8E8E8" 
+
+                  stroke-width="4" 
+
+                  fill="none"
+
+                  stroke-linecap="round"
+
+                  stroke-linejoin="round"/>
+
+            
+
+            <circle cx="0" cy="250" r="6" fill="#E8E8E8" opacity="0.8"/>
+
+            <circle cx="0" cy="250" r="3" fill="var(--primary)"/>
+
+            
+
+            <circle cx="120" cy="210" r="6" fill="#E8E8E8" opacity="0.8"/>
+
+            <circle cx="120" cy="210" r="3" fill="var(--primary)"/>
+
+            
+
+            <circle cx="240" cy="165" r="6" fill="#E8E8E8" opacity="0.8"/>
+
+            <circle cx="240" cy="165" r="3" fill="var(--primary)"/>
+
+            
+
+            <circle cx="360" cy="115" r="6" fill="#E8E8E8" opacity="0.8"/>
+
+            <circle cx="360" cy="115" r="3" fill="var(--primary)"/>
+
+            
+
+            <circle cx="480" cy="75" r="6" fill="#E8E8E8" opacity="0.8"/>
+
+            <circle cx="480" cy="75" r="3" fill="var(--primary)"/>
+
+            
+
+            <circle cx="600" cy="35" r="6" fill="#E8E8E8" opacity="0.8"/>
+
+            <circle cx="600" cy="35" r="3" fill="var(--primary)"/>
+
+          </svg>
+
+          <div class="graph-x-axis">
+
+            <span>Start</span>
+
+            <span>Month 2</span>
+
+            <span>Month 4</span>
+
+            <span>Month 6</span>
+
+            <span>Month 9</span>
+
+            <span>Month 12</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+</section>
+
+
+<!-- NEW FEATURE 6: Testimonials Carousel -->
+
+<section class="testimonials-section">
+
+  <span class="section-badge">Success Stories</span>
+
+  <h2>What Our Clients Say</h2>
+
+  <p>Real results from real accounting firms that partnered with Project S</p>
+
+  
+
+  <div class="testimonials-carousel">
+
+    <div class="testimonial-card active">
+
+      <p class="testimonial-quote">Working with Project S transformed our firm completely. We went from struggling to find clients to having a waiting list. Their strategies are pure gold.</p>
+
+      <div class="testimonial-author">Sarah Mitchell</div>
+
+    </div>
+
+    
+
+    <div class="testimonial-card">
+
+      <p class="testimonial-quote">The ROI has been incredible. Within 6 months, our revenue doubled and we had to hire three new accountants. Best investment we've ever made.</p>
+
+      <div class="testimonial-author">James Chen</div>
+
+    </div>
+
+    
+
+    <div class="testimonial-card">
+
+      <p class="testimonial-quote">Finally, a marketing agency that understands accounting firms. They speak our language and deliver results that matter to our bottom line.</p>
+
+      <div class="testimonial-author">Emma Thompson</div>
+
+    </div>
+
+  </div>
+
+  
+
+  <div class="carousel-dots">
+
+    <button class="carousel-dot active" data-slide="0"></button>
+
+    <button class="carousel-dot" data-slide="1"></button>
+
+    <button class="carousel-dot" data-slide="2"></button>
+
+  </div>
+
+</section>
+
+
+<section id="services-section">
+
+  <span class="section-badge">Our Expertise</span>
+
+  <h2>Services That Drive Growth</h2>
+
+  <p>We offer comprehensive marketing solutions tailored to accounting and professional service firms. Hover over each card to learn more.</p>
+
+  
+
+  <div class="cards">
+
+    <div class="service-card-wrapper fade-in">
+
+      <div class="service-card">
+
+        <div class="service-card-front card">
+
+          <div class="card-icon">📱</div>
+
+          <h3>Social Media Marketing</h3>
+
+          <p>Engage your clients and prospects with professional social campaigns that build credibility and authority.</p>
+
+        </div>
+
+        <div class="service-card-back">
+
+          <h3 style="color: var(--accent-light); margin-bottom: 20px;">What's Included</h3>
+
+          <ul>
+
+            <li>Content strategy & planning</li>
+
+            <li>Daily post creation</li>
+
+            <li>Community management</li>
+
+            <li>Performance analytics</li>
+
+            <li>Paid social campaigns</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    
+
+    <div class="service-card-wrapper fade-in">
+
+      <div class="service-card">
+
+        <div class="service-card-front card">
+
+          <div class="card-icon">✍️</div>
+
+          <h3>Content Creation</h3>
+
+          <p>High-quality content that educates your clients and establishes thought leadership in accounting and finance.</p>
+
+        </div>
+
+        <div class="service-card-back">
+
+          <h3 style="color: var(--accent-light); margin-bottom: 20px;">What's Included</h3>
+
+          <ul>
+
+            <li>Blog posts & articles</li>
+
+            <li>White papers & guides</li>
+
+            <li>Video content</li>
+
+            <li>Infographics</li>
+
+            <li>Email newsletters</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    
+
+    <div class="service-card-wrapper fade-in">
+
+      <div class="service-card">
+
+        <div class="service-card-front card">
+
+          <div class="card-icon">🔍</div>
+
+          <h3>SEO Optimization</h3>
+
+          <p>Boost your firm's online visibility and attract relevant business clients searching for accounting services.</p>
+
+        </div>
+
+        <div class="service-card-back">
+
+          <h3 style="color: var(--accent-light); margin-bottom: 20px;">What's Included</h3>
+
+          <ul>
+
+            <li>Keyword research</li>
+
+            <li>On-page optimization</li>
+
+            <li>Link building</li>
+
+            <li>Local SEO</li>
+
+            <li>Monthly reporting</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    
+
+    <div class="service-card-wrapper fade-in">
+
+      <div class="service-card">
+
+        <div class="service-card-front card">
+
+          <div class="card-icon">📈</div>
+
+          <h3>Performance Marketing</h3>
+
+          <p>Data-driven campaigns that deliver measurable growth, lead generation, and client acquisition.</p>
+
+        </div>
+
+        <div class="service-card-back">
+
+          <h3 style="color: var(--accent-light); margin-bottom: 20px;">What's Included</h3>
+
+          <ul>
+
+            <li>PPC campaigns</li>
+
+            <li>Conversion optimization</li>
+
+            <li>A/B testing</li>
+
+            <li>Analytics & tracking</li>
+
+            <li>ROI reporting</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    
+
+    <div class="service-card-wrapper fade-in">
+
+      <div class="service-card">
+
+        <div class="service-card-front card">
+
+          <div class="card-icon">🤝</div>
+
+          <h3>Influencer Marketing</h3>
+
+          <p>Partner with industry experts to enhance your credibility and expand reach within professional networks.</p>
+
+        </div>
+
+        <div class="service-card-back">
+
+          <h3 style="color: var(--accent-light); margin-bottom: 20px;">What's Included</h3>
+
+          <ul>
+
+            <li>Influencer identification</li>
+
+            <li>Partnership management</li>
+
+            <li>Campaign coordination</li>
+
+            <li>Content collaboration</li>
+
+            <li>Impact measurement</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    
+
+    <div class="service-card-wrapper fade-in">
+
+      <div class="service-card">
+
+        <div class="service-card-front card">
+
+          <div class="card-icon">⚙️</div>
+
+          <h3>Marketing Automation</h3>
+
+          <p>Streamlined processes to nurture leads, retain clients, and efficiently scale your firm.</p>
+
+        </div>
+
+        <div class="service-card-back">
+
+          <h3 style="color: var(--accent-light); margin-bottom: 20px;">What's Included</h3>
+
+          <ul>
+
+            <li>Email automation</li>
+
+            <li>CRM integration</li>
+
+            <li>Lead scoring</li>
+
+            <li>Workflow creation</li>
+
+            <li>Performance tracking</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+<section class="parallax-section">
+
+  <div class="parallax-content">
+
+    <h2>Ready to Transform Your Firm?</h2>
+
+    <p>Join hundreds of accounting firms that have already discovered the Project S difference. Your growth story starts here.</p>
+
+    <a href="#contact-section" class="btn primary">Start Your Journey</a>
+
+  </div>
+
+</section>
+
+
+<section id="offer-section">
+
+  <span class="section-badge">Our Solutions</span>
+
+  <h2>Tailored for Accountancy Firms</h2>
+
+  <p>Our offerings are designed specifically to attract clients, retain them, and position your firm as a leader in the accounting sector.</p>
+
+  
+
+  <div class="cards">
+
+    <div class="offer-card fade-in">
+
+      <h3>Lead Generation</h3>
+
+      <p>We generate high-quality leads from businesses that are actively seeking accounting services.</p>
+
+    </div>
+
+    
+
+    <div class="offer-card fade-in">
+
+      <h3>Branding & Positioning</h3>
+
+      <p>Position your firm as the top choice in your local market with strategic branding.</p>
+
+    </div>
+
+    
+
+    <div class="offer-card fade-in">
+
+      <h3>Client Retention</h3>
+
+      <p>Implement automated workflows and communication strategies to keep clients engaged and loyal.</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="contact-section">
+
+  <span class="section-badge">Let's Talk</span>
+
+  <h2>Ready to Transform Your Firm?</h2>
+
+  <p>Schedule a call with our team and discover how we can accelerate your growth.</p>
+
+  
+
+  <div class="contact-container">
+
+    <div class="call-icon">📞</div>
+
+    <h3>Let's have a strategic conversation</h3>
+
+    <p class="call-description">Speak directly with our marketing experts. We'll discuss your goals, challenges, and create a custom growth strategy for your firm.</p>
+
+    
+
+    <div class="buttons">
+
+      <a href="tel:+447435197955" class="btn primary">
+
+        <span style="margin-right: 10px;"></span> Call us!
+
+      </a>
+
+      <a href="https://calendly.com/projectsofficial2026/project-s-meeting" target="_blank" class="btn primary">
+
+        Schedule A Meeting
+
+      </a>
+
+      <a href="#services-section" class="btn secondary">Our Services</a>
+
+    </div>
+
+    
+
+    <p class="call-note">Available Mon-Fri, 9AM-6PM GMT</p>
+
+  </div>
+
+</section>
+
+
+<footer>
+
+  <div class="footer-content">
+
+    <div class="footer-main">
+
+      <div class="footer-brand">
+
+        <div class="footer-logo">Project S</div>
+
+        <p>Driving exponential growth for accounting and professional service firms through data-driven marketing strategies.</p>
+
+        <div class="footer-contact">
+
+          <a href="mailto:projectsofficial2026@gmail.com">projectsofficial2026@gmail.com</a>
+
+          <a href="tel:+44 0743 5197 955">+44 0743 5197 955</a>
+
+        </div>
+
+      </div>
+
+      
+
+      <div class="footer-links">
+
+        <div class="footer-column">
+
+          <h4>Company</h4>
+
+          <ul>
+
+            <li><a href="#reviews-section">About Us</a></li>
+
+            <li><a href="#services-section">Services</a></li>
+
+            <li><a href="#offer-section">Solutions</a></li>
+
+            <li><a href="#contact-section">Contact</a></li>
+
+          </ul>
+
+        </div>
+
+        
+
+        <div class="footer-column">
+
+          <h4>Legal</h4>
+
+          <ul>
+
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+
+            <li><a href="Cookie-policy.html">Cookies Policy</a></li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    
+
+    <div class="footer-bottom">
+
+      <p>&copy; 2026 Project S. All Rights Reserved. Designed with passion for growth.</p>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+
+<button id="backToTop">↑ Top</button>
+
+
+<script>
+
+// Typewriter effect
+
+const typewriterText = "Delivers Growth";
+
+const highlightSpan = document.querySelector(".hero h1 .highlight");
+
+let idx = 0;
+
+
+function typeWriter() {
+
+  if (idx < typewriterText.length) {
+
+    highlightSpan.textContent += typewriterText[idx];
+
+    idx++;
+
+    setTimeout(typeWriter, 150);
+
+  }
+
+}
+
+
+window.addEventListener("load", typeWriter);
+
+
+
+
+const observerOptions = {
+
+  threshold: 0.15,
+
+  rootMargin: "0px 0px -50px 0px"
+
+};
+
+
+const observer = new IntersectionObserver((entries) => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+
+      entry.target.classList.add('appear');
+
+      
+
+
+      if (entry.target.classList.contains('metric-card')) {
+
+        animateCounter(entry.target);
+
+      }
+
+      
+
+      observer.unobserve(entry.target);
+
+    }
+
+  });
+
+}, observerOptions);
+
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+
+function animateCounter(card) {
+
+  const valueElement = card.querySelector('.metric-value');
+
+  const target = parseFloat(card.dataset.target);
+
+  const isPercentage = valueElement.textContent.includes('%');
+
+  const isDecimal = target < 10;
+
+  const duration = 2000;
+
+  const increment = target / (duration / 16);
+
+  let current = 0;
+
+
+  const timer = setInterval(() => {
+
+    current += increment;
+
+    if (current >= target) {
+
+      current = target;
+
+      clearInterval(timer);
+
+    }
+
+    
+
+    if (isDecimal) {
+
+      valueElement.textContent = current.toFixed(1) + 'x';
+
+    } else if (isPercentage) {
+
+      valueElement.textContent = Math.floor(current) + '%';
+
+    } else {
+
+      valueElement.textContent = Math.floor(current) + 'x';
+
+    }
+
+  }, 16);
+
+}
+
+
+const navbar = document.getElementById('navbar');
+
+window.addEventListener('scroll', () => {
+
+  if (window.scrollY > 100) {
+
+    navbar.classList.add('scrolled');
+
+  } else {
+
+    navbar.classList.remove('scrolled');
+
+  }
+
+});
+
+
+// Back to top button
+
+const backToTop = document.getElementById("backToTop");
+
+
+window.addEventListener("scroll", () => {
+
+  if (window.scrollY > 400) {
+
+    backToTop.style.display = "block";
+
+  } else {
+
+    backToTop.style.display = "none";
+
+  }
+
+});
+
+
+backToTop.addEventListener("click", () => {
+
+  window.scrollTo({
+
+    top: 0,
+
+    behavior: "smooth"
+
+  });
+
+});
+
+
+// NEW FEATURE 1: Custom Cursor
+
+const cursor = document.querySelector('.custom-cursor');
+
+const cursorDot = document.querySelector('.custom-cursor-dot');
+
+
+document.addEventListener('mousemove', (e) => {
+
+  cursor.style.left = e.clientX + 'px';
+
+  cursor.style.top = e.clientY + 'px';
+
+  cursorDot.style.left = e.clientX + 'px';
+
+  cursorDot.style.top = e.clientY + 'px';
+
+});
+
+
+document.querySelectorAll('a, button, .card, .info-card, .offer-card').forEach(el => {
+
+  el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+
+  el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+
+});
+
+
+// NEW FEATURE 2: Scroll Progress Bar
+
+window.addEventListener('scroll', () => {
+
+  const scrollProgress = document.querySelector('.scroll-progress');
+
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+  const scrolled = (window.scrollY / scrollHeight) * 100;
+
+  scrollProgress.style.width = scrolled + '%';
+
+});
+
+
+// NEW FEATURE 3: 3D Tilt Effect on Cards
+
+document.querySelectorAll('.card, .info-card').forEach(card => {
+
+  card.addEventListener('mousemove', (e) => {
+
+    const rect = card.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+
+    const y = e.clientY - rect.top;
+
+    
+
+    const centerX = rect.width / 2;
+
+    const centerY = rect.height / 2;
+
+    
+
+    const rotateX = (y - centerY) / 10;
+
+    const rotateY = (centerX - x) / 10;
+
+    
+
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+
+  });
+
+  
+
+  card.addEventListener('mouseleave', () => {
+
+    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+
+  });
+
+});
+
+
+// NEW FEATURE 6: Testimonials Carousel
+
+let currentSlide = 0;
+
+const testimonialCards = document.querySelectorAll('.testimonial-card');
+
+const carouselDots = document.querySelectorAll('.carousel-dot');
+
+
+function showSlide(index) {
+
+  testimonialCards.forEach((card, i) => {
+
+    card.classList.remove('active');
+
+    carouselDots[i].classList.remove('active');
+
+  });
+
+  
+
+  testimonialCards[index].classList.add('active');
+
+  carouselDots[index].classList.add('active');
+
+}
+
+
+carouselDots.forEach((dot, index) => {
+
+  dot.addEventListener('click', () => {
+
+    currentSlide = index;
+
+    showSlide(currentSlide);
+
+  });
+
+});
+
+
+// Auto-rotate testimonials
+
+setInterval(() => {
+
+  currentSlide = (currentSlide + 1) % testimonialCards.length;
+
+  showSlide(currentSlide);
+
+}, 5000);
+
+
+// NEW FEATURE 8: Newsletter Popup
+
+const newsletterPopup = document.getElementById('newsletterPopup');
+
+const closeNewsletter = document.getElementById('closeNewsletter');
+
+const newsletterForm = document.getElementById('newsletterForm');
+
+
+setTimeout(() => {
+
+  newsletterPopup.classList.add('show');
+
+}, 10000); // Show after 10 seconds
+
+
+closeNewsletter.addEventListener('click', () => {
+
+  newsletterPopup.classList.remove('show');
+
+});
+
+
+newsletterForm.addEventListener('submit', (e) => {
+
+  e.preventDefault();
+
+  alert('Thank you for subscribing! We\'ll send you valuable insights soon.');
+
+  newsletterPopup.classList.remove('show');
+
+});
+
+
+// NEW FEATURE 9: Live Chat Widget
+
+const chatButton = document.getElementById('chatButton');
+
+const chatWindow = document.getElementById('chatWindow');
+
+const chatClose = document.getElementById('chatClose');
+
+const chatInput = document.getElementById('chatInput');
+
+const chatSend = document.getElementById('chatSend');
+
+const chatMessages = document.getElementById('chatMessages');
+
+
+chatButton.addEventListener('click', () => {
+
+  chatWindow.classList.toggle('active');
+
+});
+
+
+chatClose.addEventListener('click', () => {
+
+  chatWindow.classList.remove('active');
+
+});
+
+
+function addMessage(text, isBot = false) {
+
+  const message = document.createElement('div');
+
+  message.className = `chat-message ${isBot ? 'bot' : 'user'}`;
+
+  message.textContent = text;
+
+  chatMessages.appendChild(message);
+
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+}
+
+
+chatSend.addEventListener('click', () => {
+
+  const message = chatInput.value.trim();
+
+  if (message) {
+
+    addMessage(message, false);
+
+    chatInput.value = '';
+
+    
+
+    // Simulate bot response
+
+    setTimeout(() => {
+
+      addMessage("Thanks for your message! One of our growth specialists will respond shortly. In the meantime, feel free to schedule a call with us!", true);
+
+    }, 1000);
+
+  }
+
+});
+
+
+chatInput.addEventListener('keypress', (e) => {
+
+  if (e.key === 'Enter') {
+
+    chatSend.click();
+
+  }
+
+});
+
+
+// Particles canvas animation
+
+const canvas = document.getElementById("particles-canvas");
+
+const ctx = canvas.getContext("2d");
+
+
+function resizeCanvas
+
+() {
+
+  canvas.width = canvas.offsetWidth;
+
+  canvas.height = canvas.offsetHeight;
+
+}
+
+
+resizeCanvas();
+
+window.addEventListener('resize', resizeCanvas);
+
+
+const particles = [];
+
+const particleCount = 60;
+
+
+class Particle {
+
+  constructor() {
+
+    this.x = Math.random() * canvas.width;
+
+    this.y = Math.random() * canvas.height;
+
+    this.size = Math.random() * 2 + 1;
+
+    this.speedX = (Math.random() - 0.5) * 0.5;
+
+    this.speedY = (Math.random() - 0.5) * 0.5;
+
+    this.opacity = Math.random() * 0.5 + 0.2;
+
+    this.color = Math.random() > 0.5 ? '232, 232, 232' : '192, 192, 192';
+
+  }
+
+
+  update() {
+
+    this.x += this.speedX;
+
+    this.y += this.speedY;
+
+
+    if (this.x > canvas.width) this.x = 0;
+
+    if (this.x < 0) this.x = canvas.width;
+
+    if (this.y > canvas.height) this.y = 0;
+
+    if (this.y < 0) this.y = canvas.height;
+
+  }
+
+
+  draw() {
+
+    ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+
+    ctx.beginPath();
+
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+
+    ctx.fill();
+
+  }
+
+}
+
+
+for (let i = 0; i < particleCount; i++) {
+
+  particles.push(new Particle());
+
+}
+
+
+function connectParticles() {
+
+  for (let i = 0; i < particles.length; i++) {
+
+    for (let j = i + 1; j < particles.length; j++) {
+
+      const dx = particles[i].x - particles[j].x;
+
+      const dy = particles[i].y - particles[j].y;
+
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+
+      if (distance < 150) {
+
+        const opacity = (1 - distance / 150) * 0.15;
+
+        ctx.strokeStyle = `rgba(232, 232, 232, ${opacity})`;
+
+        ctx.lineWidth = 1;
+
+        ctx.beginPath();
+
+        ctx.moveTo(particles[i].x, particles[i].y);
+
+        ctx.lineTo(particles[j].x, particles[j].y);
+
+        ctx.stroke();
+
+      }
+
+    }
+
+  }
+
+}
+
+
+function animateParticles() {
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  
+
+  particles.forEach(particle => {
+
+    particle.update();
+
+    particle.draw();
+
+  });
+
+  
+
+  connectParticles();
+
+  requestAnimationFrame(animateParticles);
+
+}
+
+
+animateParticles();
+
+
+// Smooth scrolling for anchor links
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+  anchor.addEventListener('click', function (e) {
+
+    e.preventDefault();
+
+    const target = document.querySelector(this.getAttribute('href'));
+
+    if (target) {
+
+      target.scrollIntoView({
+
+        behavior: 'smooth',
+
+        block: 'start'
+
+      });
+
+    }
+
+  });
+
+});
+
+</script>
+
+
+
+
+
+
 </body>
-
 </html>
